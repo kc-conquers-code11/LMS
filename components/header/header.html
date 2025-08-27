@@ -1,0 +1,74 @@
+<template id="header-template">
+  <div class="header-content">
+    <div class="mobile-menu-btn" id="mobile-menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    
+    <div class="search-container">
+      <div class="search-bar">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search courses, materials, students..." aria-label="Search">
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <button class="action-btn" id="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-moon"></i>
+      </button>
+      
+      <button class="action-btn" aria-label="Notifications">
+        <i class="fas fa-bell"></i>
+        <span class="notification-badge">3</span>
+      </button>
+      
+      <div class="user-profile">
+        <div class="user-avatar">KC</div>
+        <div class="user-info">
+          <div class="user-name">Kyle Cooper</div>
+          <div class="user-role">Student</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+class AppHeader extends HTMLElement {
+  constructor() {
+    super();
+    const template = document.getElementById('header-template').content;
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.appendChild(template.cloneNode(true));
+
+    // --- Styles with adoptedStyleSheets if supported ---
+    if ('adoptedStyleSheets' in shadow) {
+      fetch('/components/header/header.css')
+        .then(res => res.text())
+        .then(css => {
+          const sheet = new CSSStyleSheet();
+          sheet.replaceSync(css);
+          shadow.adoptedStyleSheets = [sheet];
+        });
+    } else {
+      // Fallback for older browsers: use <link>
+      const link = document.createElement('link');
+      link.setAttribute('rel', 'stylesheet');
+      link.setAttribute('href', '/components/header/header.css');
+      shadow.appendChild(link);
+    }
+
+    // --- Functionality ---
+    const themeToggle = shadow.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.toggleAttribute('data-theme', 'dark');
+    });
+
+    const mobileMenuToggle = shadow.getElementById('mobile-menu-toggle');
+    mobileMenuToggle.addEventListener('click', () => {
+      document.querySelector('app-sidebar')?.classList.toggle('mobile-open');
+    });
+  }
+}
+
+customElements.define('app-header', AppHeader);
+</script>

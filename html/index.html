@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <title>EduSync LMS</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <button class="theme-toggle" aria-label="Toggle dark mode">
+        <i id="theme-icon" class="fas fa-moon"></i>
+    </button>
+
+
+<button onclick="logoutUser()" class="primary-btn">Logout</button>
+
+
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h1><i class="fas fa-graduation-cap" aria-hidden="true"></i> EduSync LMS</h1>
+                <h2>Welcome KC!</h2>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li class="active"><a href="index.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                    <li><a href="courses.html"><i class="fas fa-book"></i> Courses</a></li>
+                    <li><a href="attendance.html"><i class="fas fa-calendar-check"></i> Attendance</a></li>
+                    <li><a href="notes.html"><i class="fas fa-sticky-note"></i> Notes</a></li>
+                    <li><a href="analytics.html"><i class="fas fa-chart-line"></i> Analytics</a></li>
+                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="search-bar">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    <input type="text" placeholder="Search courses, notes, students..." aria-label="Search">
+                </div>
+                <div class="user-actions">
+                    <div class="notification-bell" role="button" aria-label="Notifications">
+                        <i class="fas fa-bell" aria-hidden="true"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <div class="avatar" aria-hidden="true">
+                            <a href="login.html">KC</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <h1 class="dashboard-title">Dashboard</h1>
+            
+            <!-- Stats Overview -->
+            <section class="stats-container">
+                <div class="stat-card">
+                    <div class="stat-title">Active Courses</div>
+                    <div class="stat-value">5</div>
+                    <i class="fas fa-book stat-icon" aria-hidden="true"></i>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-title">Pending Assignments</div>
+                    <div class="stat-value">24</div>
+                    <i class="fas fa-tasks stat-icon" aria-hidden="true"></i>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-title">Attendance Rate</div>
+                    <div class="stat-value">92%</div>
+                    <i class="fas fa-calendar-check stat-icon" aria-hidden="true"></i>
+                </div>
+                <div class="stat-card danger">
+                    <div class="stat-title">New Messages</div>
+                    <div class="stat-value">8</div>
+                    <i class="fas fa-comments stat-icon" aria-hidden="true"></i>
+                </div>
+            </section>
+            
+            <!-- Features -->
+            <section class="features-section" aria-labelledby="features-heading">
+                <h2 id="features-heading" class="section-title"><i class="fas fa-star" aria-hidden="true"></i> Unique Time-Saving Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <i class="fas fa-robot" aria-hidden="true"></i>
+                            <h3>Attendance Automation</h3>
+                        </div>
+                        <div class="feature-body">
+                            <p class="feature-description">ADD feature later.</p>
+                            <ul class="feature-benefits">
+                                <li>More efficient attendance calculation</li>
+                                <li>Real-time absence alerts</li>
+                                <li>Automated compliance reports</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <i class="fas fa-file-contract" aria-hidden="true"></i>
+                            <h3>Smart Notes Collaboration</h3>
+                        </div>
+                        <div class="feature-body">
+                            <p class="feature-description">Notes access for students</p>
+                            <ul class="feature-benefits">
+                                <li>One click notes upload</li>
+                                <li>Version control for notes</li>
+                                <li>More features need to be added</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <i class="fas fa-bolt" aria-hidden="true"></i>
+                            <h3>Advanced Assignment Tools</h3>
+                        </div>
+                        <div class="feature-body">
+                            <p class="feature-description">Automated grading, plagiarism detection, and feedback generation.</p>
+                            <ul class="feature-benefits">
+                                <li>Rubric-based auto grading</li>
+                                <li>Plagiarism checker</li>
+                                <li>Feedback Lib</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-header">
+                            <i class="fas fa-chart-pie" aria-hidden="true"></i>
+                            <h3>Predictive Analytics Dashboard</h3>
+                        </div>
+                        <div class="feature-body">
+                            <p class="feature-description">AI-powered analytics for Attendance & Performance.</p>
+                            <ul class="feature-benefits">
+                                <li>Early intervention alerts</li>
+                                <li>Performance trend analysis</li>
+                                <li>Personalized learning paths</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Upcoming Classes -->
+            <section class="features-section" aria-labelledby="classes-heading">
+                <h2 id="classes-heading" class="section-title"><i class="fas fa-calendar-alt" aria-hidden="true"></i> Today's Classes</h2>
+                <div class="classes-list">
+                    <div class="class-item">
+                        <div class="class-time">9:00 AM</div>
+                        <div class="class-info">
+                            <div class="class-name">Analysis OF Algorithms (CSE)</div>
+                            <div class="class-location">Lab 301</div>
+                        </div>
+                        <div class="attendance-badge">75%</div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time">11:00 AM</div>
+                        <div class="class-info">
+                            <div class="class-name">COA (CSE)</div>
+                            <div class="class-location">Room 308</div>
+                        </div>
+                        <div class="attendance-badge">76%</div>
+                    </div>
+                    <div class="class-item">
+                        <div class="class-time">2:00 PM</div>
+                        <div class="class-info">
+                            <div class="class-name">Java Lab (CSE)</div>
+                            <div class="class-location">Lab 306</div>
+                        </div>
+                        <div class="attendance-badge">94%</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
