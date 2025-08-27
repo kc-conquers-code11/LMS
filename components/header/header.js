@@ -44,11 +44,20 @@ class AppHeader extends HTMLElement {
     const shadow = this.attachShadow({ mode: 'open' })
     shadow.appendChild(template.content.cloneNode(true))
 
+    // --- Add Font Awesome for Shadow DOM ---
+    const faLink = document.createElement('link')
+    faLink.setAttribute('rel', 'stylesheet')
+    faLink.setAttribute(
+      'href',
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+    )
+    shadow.appendChild(faLink)
+
     // --- Styles with adoptedStyleSheets if supported ---
     if ('adoptedStyleSheets' in shadow) {
       fetch('../components/header/header.css')
-        .then(res => res.text())
-        .then(css => {
+        .then((res) => res.text())
+        .then((css) => {
           const sheet = new CSSStyleSheet()
           sheet.replaceSync(css)
           shadow.adoptedStyleSheets = [sheet]
