@@ -2,8 +2,8 @@
 app-header {
   display: block;
   background-color: var(--surface-50);
-  padding: 1.5rem 1.5rem 1rem 1.5rem; /* more top padding */
-  border-bottom: 2px solid var(--border-medium); /* thicker bottom border */
+  padding: 1.5rem 1.5rem 1rem 1.5rem; 
+  border-bottom: 2px solid var(--border-medium); 
   box-shadow: var(--shadow-md);
   transition: var(--transition);
   position: sticky;
@@ -167,7 +167,7 @@ app-header {
 /* Dark Theme Overrides */
 [data-theme='dark'] app-header {
   background-color: var(--surface-100);
-  border-bottom: 2px solid var(--border-heavy); /* more visible on dark theme */
+  border-bottom: 2px solid var(--border-heavy);
   box-shadow: var(--shadow-lg);
 }
 

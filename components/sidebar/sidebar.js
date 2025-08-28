@@ -17,22 +17,22 @@ template.innerHTML = `
 
       <div class="nav-item active">
         <div class="nav-icon"><i class="fas fa-home"></i></div>
-        <span>Dashboard</span>
+        <a href="/html/index.html"><span>Dashboard</span></a>
       </div>
 
       <div class="nav-item">
         <div class="nav-icon"><i class="fas fa-book"></i></div>
-        <span>Courses</span>
+        <a href="/html/courses.html"><span>Courses</span></a>
       </div>
 
       <div class="nav-item">
         <div class="nav-icon"><i class="fas fa-calendar-check"></i></div>
-        <span>Attendance</span>
+        <a href="/html/attendance.html"><span>Attendance</span></a>
       </div>
 
       <div class="nav-item">
         <div class="nav-icon"><i class="fas fa-sticky-note"></i></div>
-        <span>Notes</span>
+        <a href="/html/notes.html"><span>Notes</span></a>
       </div>
     </nav>
 
@@ -41,31 +41,25 @@ template.innerHTML = `
 
       <div class="nav-item">
         <div class="nav-icon"><i class="fas fa-chart-line"></i></div>
-        <span>Analytics</span>
+        <a href="/html/analytics.html"><span>Analytics</span></a>
       </div>
 
       <div class="nav-item">
         <div class="nav-icon"><i class="fas fa-tasks"></i></div>
-        <span>Assignments</span>
+        <a href="/html/assignments.html"><span>Assignments</span></a>
       </div>
 
       <div class="nav-item">
         <div class="nav-icon"><i class="fas fa-comments"></i></div>
-        <span>Messages</span>
+        <a href="/html/announcements.html"><span>Announcements</span></a>
       </div>
 
       <div class="nav-item">
         <div class="nav-icon"><i class="fas fa-cog"></i></div>
-        <span>Settings</span>
+        <a href="/html/settings.html"><span>Settings</span>
       </div>
     </nav>
 
-    <nav class="nav-section">
-      <div class="nav-item">
-        <div class="nav-icon"><i class="fas fa-sign-out-alt"></i></div>
-        <span>Logout</span>
-      </div>
-    </nav>
   </div>
 `
 
@@ -78,8 +72,8 @@ class AppSidebar extends HTMLElement {
     // --- Styles with adoptedStyleSheets if supported ---
     if ('adoptedStyleSheets' in shadow) {
       fetch('../components/sidebar/sidebar.css')
-        .then(res => res.text())
-        .then(css => {
+        .then((res) => res.text())
+        .then((css) => {
           const sheet = new CSSStyleSheet()
           sheet.replaceSync(css)
           shadow.adoptedStyleSheets = [sheet]
