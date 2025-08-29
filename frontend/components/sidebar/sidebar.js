@@ -47,6 +47,15 @@ class AppSidebar extends HTMLElement {
     const shadow = this.attachShadow({ mode: 'open' })
     shadow.appendChild(template.content.cloneNode(true))
 
+    // Font Awesome
+    const faLink = document.createElement('link')
+    faLink.setAttribute('rel', 'stylesheet')
+    faLink.setAttribute(
+      'href',
+      'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+    )
+    shadow.appendChild(faLink)
+
     // Load CSS
     if ('adoptedStyleSheets' in shadow) {
       fetch('/frontend/components/sidebar/sidebar.css')
