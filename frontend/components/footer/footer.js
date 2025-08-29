@@ -21,9 +21,9 @@ class AppFooter extends HTMLElement {
 
     // --- Styles with adoptedStyleSheets if supported ---
     if ('adoptedStyleSheets' in shadow) {
-      fetch('../components/footer/footer.css')
-        .then(res => res.text())
-        .then(css => {
+      fetch('/frontend/components/footer/footer.css')
+        .then((res) => res.text())
+        .then((css) => {
           const sheet = new CSSStyleSheet()
           sheet.replaceSync(css)
           shadow.adoptedStyleSheets = [sheet]
@@ -31,12 +31,9 @@ class AppFooter extends HTMLElement {
     } else {
       const link = document.createElement('link')
       link.setAttribute('rel', 'stylesheet')
-      link.setAttribute('href', '../components/footer/footer.css')
+      link.setAttribute('href', '/frontend/components/footer/footer.css')
       shadow.appendChild(link)
     }
-
-    // Footer does not really need theme toggle or mobile menu,
-    // so we can remove those blocks if they don’t exist in footer HTML
   }
 }
 

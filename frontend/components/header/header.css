@@ -1,27 +1,32 @@
-/* Header Component */
-app-header {
+/* =========================
+   App Header (Web Component)
+   ========================= */
+
+/* Host element styles */
+:host {
   display: block;
-  background-color: var(--surface-50);
-  padding: 1.5rem 1.5rem 1rem 1.5rem; 
-  border-bottom: 2px solid var(--border-medium); 
-  box-shadow: var(--shadow-md);
-  transition: var(--transition);
-  position: sticky;
+  position:static;
   top: 0;
   z-index: 1000;
+  background: var(--bg-primary);
+  border-bottom: 2px solid var(--border-heavy);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
 }
 
+/* Main header content */
 .header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0.75rem 1rem; 
   gap: 1rem;
 }
 
-/* Mobile Menu Button */
+/* ===== Mobile Menu Button ===== */
 .mobile-menu-btn {
-  display: none;
-  font-size: 1.25rem;
+  display: none; 
+  font-size: 1.5rem;
   cursor: pointer;
   color: var(--text-primary);
   transition: var(--transition);
@@ -31,7 +36,7 @@ app-header {
   color: var(--primary-500);
 }
 
-/* Search Bar */
+/* ===== Search Bar ===== */
 .search-container {
   flex: 1;
   max-width: 500px;
@@ -55,6 +60,7 @@ app-header {
 .search-bar i {
   margin-right: 0.5rem;
   color: var(--text-muted);
+  transition: var(--transition);
 }
 
 .search-bar input {
@@ -62,18 +68,18 @@ app-header {
   border: none;
   background: transparent;
   color: var(--text-primary);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   outline: none;
 }
 
-/* Header Actions */
+/* ===== Header Actions ===== */
 .header-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-/* Action Buttons (Theme, Notifications) */
+/* Action buttons (Theme toggle, Notifications) */
 .action-btn {
   background: var(--surface-100);
   border: none;
@@ -85,7 +91,7 @@ app-header {
   justify-content: center;
   cursor: pointer;
   color: var(--text-secondary);
-  transition: var(--transition);
+  transition: all 0.2s ease-in-out;
   position: relative;
 }
 
@@ -95,7 +101,7 @@ app-header {
   transform: scale(1.05);
 }
 
-/* Notification Badge */
+/* Notification badge */
 .notification-badge {
   position: absolute;
   top: -0.25rem;
@@ -113,7 +119,7 @@ app-header {
   box-shadow: var(--shadow-sm);
 }
 
-/* User Profile */
+/* ===== User Profile ===== */
 .user-profile {
   display: flex;
   align-items: center;
@@ -140,7 +146,7 @@ app-header {
   justify-content: center;
   font-weight: bold;
   font-size: 0.95rem;
-  transition: var(--transition);
+  transition: all 0.2s ease-in-out;
 }
 
 .user-avatar:hover {
@@ -164,39 +170,55 @@ app-header {
   color: var(--text-muted);
 }
 
-/* Dark Theme Overrides */
-[data-theme='dark'] app-header {
-  background-color: var(--surface-100);
-  border-bottom: 2px solid var(--border-heavy);
+/* ===== Dark Theme Overrides ===== */
+:host([data-theme='dark']) {
+  background: var(--surface-100);
+  border-bottom: 3px solid var(--border-heavy);
   box-shadow: var(--shadow-lg);
 }
 
-[data-theme='dark'] .search-bar {
+:host([data-theme='dark']) .search-bar {
   background: var(--surface-200);
 }
 
-[data-theme='dark'] .search-bar i {
+:host([data-theme='dark']) .search-bar i {
   color: var(--text-secondary);
 }
 
-[data-theme='dark'] .action-btn {
+:host([data-theme='dark']) .action-btn {
   background: var(--surface-200);
   color: var(--text-secondary);
 }
 
-[data-theme='dark'] .action-btn:hover {
+:host([data-theme='dark']) .action-btn:hover {
   background: var(--primary-700);
   color: var(--surface-50);
 }
 
-[data-theme='dark'] .user-profile:hover {
+:host([data-theme='dark']) .user-profile:hover {
   background: var(--surface-300);
 }
 
-[data-theme='dark'] .user-avatar {
+:host([data-theme='dark']) .user-avatar {
   background: var(--primary-600);
 }
 
-[data-theme='dark'] .user-avatar:hover {
+:host([data-theme='dark']) .user-avatar:hover {
   background: var(--primary-500);
+}
+
+/* ===== Responsive ===== */
+/* Hide header actions on mobile */
+@media (max-width: 768px) {
+  .header-actions {
+    /* display: none; */
+  }
+
+  .search-container {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
 }

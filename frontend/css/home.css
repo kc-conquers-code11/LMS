@@ -99,7 +99,6 @@ body {
   line-height: 1.5;
 }
 
-
 /* ==========================
    Scrollbar Styling
 ========================== */
@@ -129,19 +128,33 @@ body {
   }
 }
 
+/* Mobile / tablet overlay for sidebar */
 @media (max-width: 768px) {
   .app-container {
     flex-direction: column;
-  }
-
-  app-sidebar {
-    width: 100%;
-    height: auto;
     position: relative;
   }
 
-  .sidebar-content {
+  app-sidebar {
+    width: 280px; /* fixed width */
+    height: 100vh;
+    background: var(--bg-primary);
+    position: fixed; /* overlay on top */
+    top: 0;
+    left: 0;
+    transform: translateX(-100%); /* hidden by default */
+    z-index: 9999;
+    transition: transform 0.3s ease;
+  }
+
+  app-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  .content-area {
     padding: 1rem;
+    position: relative;
+    z-index: 1;
   }
 
   .header-content {
@@ -152,29 +165,6 @@ body {
     order: 3;
     margin: 1rem 0 0 0;
     width: 100%;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .footer-links {
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .header-actions {
-    gap: 0.5rem;
-  }
-
-  .user-info {
-    display: none;
-  }
-
-  .card-grid {
-    grid-template-columns: 1fr;
   }
 }
 

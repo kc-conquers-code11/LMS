@@ -1,65 +1,43 @@
-// Create a template for the sidebar
 const template = document.createElement('template')
 template.innerHTML = `
   <div class="sidebar-content">
-    <div class="logo-container">
-      <div class="logo-icon">
-        <i class="fas fa-graduation-cap"></i>
-      </div>
-      <div>
+    <!-- Top bar for mobile (logo, menu toggle) -->
+    
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    
+    <div class="sidebar-top-actions">
+      <div class="mobile-logo-container">
+        <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
         <div class="logo-text">EduSync LMS</div>
-        <div class="welcome-text">Welcome, KC!</div>
       </div>
     </div>
 
+    <!-- Desktop Logo (hidden on mobile) -->
+    <div class="desktop-logo-container">
+      <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div class="logo-text">EduSync LMS</div>
+    </div>
+
+    <!-- Navigation -->
     <nav class="nav-section">
       <div class="section-title">Main Navigation</div>
-
-      <div class="nav-item active">
-        <div class="nav-icon"><i class="fas fa-home"></i></div>
-        <a href="/html/index.html"><span>Dashboard</span></a>
-      </div>
-
-      <div class="nav-item">
-        <div class="nav-icon"><i class="fas fa-book"></i></div>
-        <a href="/html/courses.html"><span>Courses</span></a>
-      </div>
-
-      <div class="nav-item">
-        <div class="nav-icon"><i class="fas fa-calendar-check"></i></div>
-        <a href="/html/attendance.html"><span>Attendance</span></a>
-      </div>
-
-      <div class="nav-item">
-        <div class="nav-icon"><i class="fas fa-sticky-note"></i></div>
-        <a href="/html/notes.html"><span>Notes</span></a>
-      </div>
+      <div class="nav-item active"><div class="nav-icon"><i class="fas fa-home"></i></div><a href="/frontend/index.html">Dashboard</a></div>
+      <div class="nav-item"><div class="nav-icon"><i class="fas fa-book"></i></div><a href="/frontend/html/courses.html">Courses</a></div>
+      <div class="nav-item"><div class="nav-icon"><i class="fas fa-calendar-check"></i></div><a href="/frontend/html/attendance.html">Attendance</a></div>
+      <div class="nav-item"><div class="nav-icon"><i class="fas fa-sticky-note"></i></div><a href="/frontend/html/notes.html">Notes</a></div>
     </nav>
 
     <nav class="nav-section">
       <div class="section-title">Resources</div>
-
-      <div class="nav-item">
-        <div class="nav-icon"><i class="fas fa-chart-line"></i></div>
-        <a href="/html/analytics.html"><span>Analytics</span></a>
-      </div>
-
-      <div class="nav-item">
-        <div class="nav-icon"><i class="fas fa-tasks"></i></div>
-        <a href="/html/assignments.html"><span>Assignments</span></a>
-      </div>
-
-      <div class="nav-item">
-        <div class="nav-icon"><i class="fas fa-comments"></i></div>
-        <a href="/html/announcements.html"><span>Announcements</span></a>
-      </div>
-
-      <div class="nav-item">
-        <div class="nav-icon"><i class="fas fa-cog"></i></div>
-        <a href="/html/settings.html"><span>Settings</span>
-      </div>
+      <div class="nav-item"><div class="nav-icon"><i class="fas fa-chart-line"></i></div><a href="/frontend/html/analytics.html">Analytics</a></div>
+      <div class="nav-item"><div class="nav-icon"><i class="fas fa-tasks"></i></div><a href="/frontend/html/assignments.html">Assignments</a></div>
+      <div class="nav-item"><div class="nav-icon"><i class="fas fa-comments"></i></div><a href="/frontend/html/announcements.html">Announcements</a></div>
+      <div class="nav-item"><div class="nav-icon"><i class="fas fa-cog"></i></div><a href="/frontend/html/settings.html">Settings</a></div>
     </nav>
-
   </div>
 `
 
@@ -69,9 +47,9 @@ class AppSidebar extends HTMLElement {
     const shadow = this.attachShadow({ mode: 'open' })
     shadow.appendChild(template.content.cloneNode(true))
 
-    // --- Styles with adoptedStyleSheets if supported ---
+    // Load CSS
     if ('adoptedStyleSheets' in shadow) {
-      fetch('../components/sidebar/sidebar.css')
+      fetch('/frontend/components/sidebar/sidebar.css')
         .then((res) => res.text())
         .then((css) => {
           const sheet = new CSSStyleSheet()
@@ -80,19 +58,26 @@ class AppSidebar extends HTMLElement {
         })
     } else {
       const link = document.createElement('link')
-      link.setAttribute('rel', 'stylesheet')
-      link.setAttribute('href', '../components/sidebar/sidebar.css')
+      link.rel = 'stylesheet'
+      link.href = '/frontend/components/sidebar/sidebar.css'
       shadow.appendChild(link)
     }
 
+    // Mobile menu toggle
     const mobileMenuToggle = shadow.getElementById('mobile-menu-toggle')
-    if (mobileMenuToggle) {
-      mobileMenuToggle.addEventListener('click', () => {
-        document.querySelector('app-sidebar').classList.toggle('mobile-open')
+    mobileMenuToggle.addEventListener('click', () => {
+      this.classList.toggle('mobile-open')
+      mobileMenuToggle.classList.toggle('active')
+    })
+
+    // Close mobile menu on nav item click
+    shadow.querySelectorAll('.nav-item a').forEach((link) => {
+      link.addEventListener('click', () => {
+        this.classList.remove('mobile-open')
+        mobileMenuToggle.classList.remove('active')
       })
-    }
+    })
   }
 }
 
-// Define custom element
 customElements.define('app-sidebar', AppSidebar)

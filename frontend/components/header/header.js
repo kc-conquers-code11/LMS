@@ -1,22 +1,21 @@
-// Create a template for the header
-const template = document.createElement('template')
+// header.js
+const template = document.createElement('template');
 template.innerHTML = `
   <div class="header-content">
-    <div class="mobile-menu-btn" id="mobile-menu-toggle">
+    <!-- Mobile Menu Button -->
+    <div class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle navigation menu">
       <i class="fas fa-bars"></i>
     </div>
 
+    <!-- Search Bar -->
     <div class="search-container">
       <div class="search-bar">
         <i class="fas fa-search"></i>
-        <input
-          type="text"
-          placeholder="Search courses, materials, students..."
-          aria-label="Search"
-        />
+        <input type="text" placeholder="Search courses, materials, students..." aria-label="Search" />
       </div>
     </div>
 
+    <!-- Header Actions -->
     <div class="header-actions">
       <button class="action-btn" id="theme-toggle" aria-label="Toggle theme">
         <i class="fas fa-moon"></i>
@@ -30,64 +29,70 @@ template.innerHTML = `
       <div class="user-profile">
         <div class="user-avatar">KC</div>
         <div class="user-info">
-          <div class="user-name">Kyle Cooper</div>
-          <div class="user-role">Student</div>
+          <div class="user-name">Krishna C</div>
+          <div class="user-role">Student</div> 
         </div>
       </div>
     </div>
   </div>
-`
+`;
 
 class AppHeader extends HTMLElement {
   constructor() {
-    super()
-    const shadow = this.attachShadow({ mode: 'open' })
-    shadow.appendChild(template.content.cloneNode(true))
+    super();
+    const shadow = this.attachShadow({ mode: 'open' });
 
-    // --- Add Font Awesome for Shadow DOM ---
-    const faLink = document.createElement('link')
-    faLink.setAttribute('rel', 'stylesheet')
+    // Font Awesome
+    const faLink = document.createElement('link');
+    faLink.setAttribute('rel', 'stylesheet');
     faLink.setAttribute(
       'href',
       'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
-    )
-    shadow.appendChild(faLink)
+    );
+    shadow.appendChild(faLink);
 
-    // --- Styles with adoptedStyleSheets if supported ---
-    if ('adoptedStyleSheets' in shadow) {
-      fetch('../components/header/header.css')
-        .then((res) => res.text())
-        .then((css) => {
-          const sheet = new CSSStyleSheet()
-          sheet.replaceSync(css)
-          shadow.adoptedStyleSheets = [sheet]
-        })
-    } else {
-      const link = document.createElement('link')
-      link.setAttribute('rel', 'stylesheet')
-      link.setAttribute('href', '../components/header/header.css')
-      shadow.appendChild(link)
-    }
+    // External CSS
+    const styleLink = document.createElement('link');
+    styleLink.setAttribute('rel', 'stylesheet');
+    styleLink.setAttribute('href', '/frontend/components/header/header.css');
+    shadow.appendChild(styleLink);
+
+    // Append template
+    shadow.appendChild(template.content.cloneNode(true));
+
+    // Initialize functionality
+    this.initializeHeader(shadow);
+  }
+
+  initializeHeader(shadow) {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    this.setAttribute('data-theme', savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme);
+
+    const themeIcon = shadow.getElementById('theme-toggle').querySelector('i');
+    themeIcon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
 
     // Theme toggle
-    const themeToggle = shadow.getElementById('theme-toggle')
+    const themeToggle = shadow.getElementById('theme-toggle');
     themeToggle.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme')
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
-      document.documentElement.setAttribute('data-theme', newTheme)
-      localStorage.setItem('theme', newTheme)
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
 
-      const icon = themeToggle.querySelector('i')
-      icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'
-    })
+      // Update icons in both header & sidebar
+      themeIcon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      document.querySelector('app-sidebar')?.setAttribute('data-theme', newTheme);
+      this.setAttribute('data-theme', newTheme);
+    });
 
     // Mobile menu toggle
-    const mobileMenuToggle = shadow.getElementById('mobile-menu-toggle')
+    const mobileMenuToggle = shadow.getElementById('mobile-menu-toggle');
     mobileMenuToggle.addEventListener('click', () => {
-      document.querySelector('app-sidebar').classList.toggle('mobile-open')
-    })
+      const sidebar = document.querySelector('app-sidebar');
+      sidebar.classList.toggle('mobile-open');
+    });
   }
 }
 
-// Define the custom element
-customElements.define('app-header', AppHeader)
+customElements.define('app-header', AppHeader);

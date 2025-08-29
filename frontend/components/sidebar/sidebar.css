@@ -1,20 +1,85 @@
-app-sidebar {
-  display: block;
+:host {
+  display: flex;
   width: 280px;
   background: var(--bg-secondary);
-  border-right: 1px solid var(--border-light);
+  border-right: 2.5px solid var(--border-heavy);
   height: 100vh;
-  position: sticky;
-  top: 0;
   overflow-y: auto;
-  transition: var(--transition);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  position: relative;
+  transform: none;
 }
 
+/* Sidebar content */
 .sidebar-content {
   padding: 1.5rem 1rem;
 }
 
-.logo-container {
+/* Mobile top actions row */
+.sidebar-top-actions {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 10px solid var(--border-heavy) !important;
+  position: sticky;
+  top: 0;
+  z-index: 1001;
+}
+
+.mobile-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Enhanced hamburger menu with improved animation */
+.mobile-menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  left: 13rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 1002; /* Higher z-index to ensure it's always clickable */
+}
+
+.hamburger-line {
+  width: 24px;
+  height: 2px;
+  background: var(--text-secondary);
+  margin: 3px 0;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Enhanced easing for smoother animation */
+  transform-origin: center;
+  position: relative;
+}
+
+/* Improved cross animation with better positioning */
+.mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background: var(--primary-500); /* Change color when active for better visibility */
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px); /* Slide out instead of just fading */
+}
+
+.mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+  background: var(--primary-500); /* Change color when active for better visibility */
+}
+
+/* Desktop Logo */
+.desktop-logo-container {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -24,7 +89,7 @@ app-sidebar {
 
 .logo-icon {
   background: var(--primary-500);
-  color: white;
+  color: #fff;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--radius);
@@ -32,6 +97,7 @@ app-sidebar {
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
+  
 }
 
 .logo-text {
@@ -40,12 +106,7 @@ app-sidebar {
   color: var(--text-primary);
 }
 
-.welcome-text {
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  margin-top: 0.25rem;
-}
-
+/* Navigation */
 .nav-section {
   margin-bottom: 2rem;
 }
@@ -90,4 +151,50 @@ app-sidebar {
 .nav-icon {
   width: 1.25rem;
   text-align: center;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  :host {
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-100%);
+    background: var(--bg-secondary);
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+    pointer-events: auto;
+    z-index: 10000;
+  }
+
+  :host(.mobile-open) {
+    transform: translateX(0);
+  }
+
+  .sidebar-top-actions {
+    display: flex;
+    margin: 0 0 1.5rem 0;
+  }
+  
+  .desktop-logo-container {
+    display: none;
+  }
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+  .sidebar-top-actions {
+    display: none;
+  }
+  
+  .mobile-logo-container {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+  }
+  
+  .desktop-logo-container {
+    display: flex;
+  }
 }
