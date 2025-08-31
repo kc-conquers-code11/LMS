@@ -1,12 +1,11 @@
-/* =========================
-   App Header (Web Component)
-   Optimized & Enhanced
-   ========================= */
+/* App Header (Web Component) */
 
 :host {
   display: block;
-  position: static;
+  position: fixed;
   top: 0;
+  left: 15rem; 
+  width: calc(100% - 15rem); 
   z-index: 1000;
   background: var(--surface-50);
   border-bottom: 2px solid var(--border-heavy);
@@ -19,7 +18,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem;
+  padding: 0.6rem 1rem;
   gap: 1rem;
 }
 
@@ -44,7 +43,7 @@
    ======================== */
 .search-container {
   flex: 1;
-  max-width: 500px;
+  max-width: 350px;
   margin: 0 1.5rem;
 }
 
@@ -101,8 +100,8 @@
 .action-btn {
   background: var(--surface-100);
   border: none;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -185,8 +184,8 @@
 }
 
 .user-avatar {
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   background: var(--primary-500);
   color: var(--surface-50);
@@ -207,18 +206,17 @@
 .user-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
 }
 
 .user-name {
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 0.75rem;
   color: var(--text-primary);
   transition: color 0.3s ease;
 }
 
 .user-role {
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   color: var(--text-muted);
   transition: color 0.3s ease;
 }
@@ -266,6 +264,11 @@
    Responsive
    ======================== */
 @media (max-width: 768px) {
+  :host {
+    left: 0;
+    width: 100%;
+  }
+  
   .search-container {
     display: none;
   }

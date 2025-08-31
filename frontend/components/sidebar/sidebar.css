@@ -1,7 +1,7 @@
 :host {
   display: flex;
   flex-direction: column;
-  width: 250px;
+  width: 15rem;
   height: 100vh;
   background: var(--surface-50);
   border-right: 2.5px solid var(--border-heavy);
@@ -189,6 +189,8 @@
     position: fixed;
     top: 0;
     left: 0;
+    width: 20rem !important;
+    height: auto;
     transform: translateX(-100%);
     box-shadow: var(--shadow-lg);
     background: var(--surface-50);
