@@ -3,8 +3,8 @@
   flex-direction: column;
   width: 15rem;
   height: 100vh;
-  background: var(--surface-50);
-  border-right: 2.5px solid var(--border-heavy);
+  background: var(--bg); 
+  border-right: 2px solid var(--border); 
   box-shadow: var(--shadow-md);
   overflow-y: auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -32,7 +32,7 @@
 
 .logo-icon {
   background: var(--primary-500);
-  color: #fff;
+  color: var(--surface-50);
   width: 2.5rem;
   height: 2.5rem;
   border-radius: var(--radius-lg);
@@ -52,7 +52,7 @@
 .logo-text {
   font-weight: 700;
   font-size: 1.25rem;
-  color: var(--text-primary);
+  color: var(--text);
   letter-spacing: 0.02em;
   transition: color var(--transition-fast);
 }
@@ -63,7 +63,7 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--text-muted);
+  color: var(--text-light);
   margin: 2rem 0 0.75rem 0;
   padding: 0 0.75rem;
 }
@@ -74,7 +74,7 @@
   gap: 0.75rem;
   padding: 0.49rem 0.75rem;
   border-radius: var(--radius);
-  color: var(--text-secondary);
+  color: var(--text-light);
   transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
   margin-bottom: 0.3rem;
   cursor: pointer;
@@ -115,7 +115,7 @@
 .nav-icon {
   width: 1.25rem;
   text-align: center;
-  color: var(--text-tertiary);
+  color: var(--text-light);
   font-size: 1rem;
   transition: color var(--transition-fast), transform var(--transition-fast);
 }
@@ -135,10 +135,10 @@
   align-items: center;
   padding: 1rem 0.5rem;
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid var(--border-light);
+  border-bottom: 2px solid var(--border);
   position: sticky;
   top: 0;
-  background: var(--surface-50);
+  background: var(--bg);
   z-index: 1001;
 }
 
@@ -162,7 +162,7 @@
 .hamburger-line {
   width: 22px;
   height: 2px;
-  background: var(--text-secondary);
+  background: var(--text-light);
   margin: 4px 0;
   border-radius: 2px;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
@@ -193,7 +193,7 @@
     height: auto;
     transform: translateX(-100%);
     box-shadow: var(--shadow-lg);
-    background: var(--surface-50);
+    background: var(--bg);
     z-index: 10000;
   }
 

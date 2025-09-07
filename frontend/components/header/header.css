@@ -7,9 +7,9 @@
   left: 15rem; 
   width: calc(100% - 15rem); 
   z-index: 1000;
-  background: var(--surface-50);
-  border-bottom: 2px solid var(--border-heavy);
-  box-shadow: var(--shadow-md);
+  background: var(--bg) !important;
+  border-bottom: 2px solid var(--border);
+  box-shadow: var(--shadow);
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -29,7 +29,7 @@
   display: none;
   font-size: 1.6rem;
   cursor: pointer;
-  color: var(--text-primary);
+  color: var(--text);
   transition: transform 0.2s ease, color 0.3s ease;
 }
 
@@ -50,21 +50,21 @@
 .search-bar {
   display: flex;
   align-items: center;
-  background: var(--surface-100);
-  border-radius: var(--radius-lg);
+  background: var(--neutral-100);
+  border-radius: 0.75rem;
   padding: 0.55rem 1rem;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
   transition: box-shadow 0.3s ease, transform 0.2s ease;
 }
 
 .search-bar:hover {
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow);
   transform: translateY(-1px);
 }
 
 .search-bar i {
   margin-right: 0.6rem;
-  color: var(--text-muted);
+  color: var(--text-light);
   transition: color 0.3s ease;
 }
 
@@ -72,14 +72,14 @@
   flex: 1;
   border: none;
   background: transparent;
-  color: var(--text-primary);
+  color: var(--text);
   font-size: 0.95rem;
   outline: none;
   transition: color 0.3s ease;
 }
 
 .search-bar input::placeholder {
-  color: var(--text-muted);
+  color: var(--text-light);
   transition: opacity 0.3s ease;
 }
 
@@ -98,7 +98,7 @@
 
 /* Action Buttons */
 .action-btn {
-  background: var(--surface-100);
+  background: var(--neutral-100);
   border: none;
   width: 2rem;
   height: 2rem;
@@ -107,17 +107,17 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: var(--text-secondary);
+  color: var(--text-light);
   transition: all 0.25s ease-in-out;
   position: relative;
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
 }
 
 .action-btn:hover {
   background: var(--primary-50);
   color: var(--primary-600);
   transform: scale(1.12);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow);
 }
 
 /* Ripple effect */
@@ -144,8 +144,8 @@
   position: absolute;
   top: -0.35rem;
   right: -0.35rem;
-  background: var(--danger-500);
-  color: var(--surface-50);
+  background: var(--error);
+  color: var(--bg-card);
   border-radius: 50%;
   width: 1.3rem;
   height: 1.3rem;
@@ -154,7 +154,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow);
   animation: pulseBadge 1.5s infinite;
 }
 
@@ -173,14 +173,14 @@
   gap: 0.75rem;
   cursor: pointer;
   padding: 0.5rem 0.75rem;
-  border-radius: var(--radius-lg);
+  border-radius: 0.75rem;
   transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .user-profile:hover {
-  background: var(--surface-200);
+  background: var(--neutral-200);
   transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
 }
 
 .user-avatar {
@@ -188,7 +188,7 @@
   height: 2rem;
   border-radius: 50%;
   background: var(--primary-500);
-  color: var(--surface-50);
+  color: var(--bg-card);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -211,13 +211,13 @@
 .user-name {
   font-weight: 600;
   font-size: 0.75rem;
-  color: var(--text-primary);
+  color: var(--text);
   transition: color 0.3s ease;
 }
 
 .user-role {
   font-size: 0.65rem;
-  color: var(--text-muted);
+  color: var(--text-light);
   transition: color 0.3s ease;
 }
 
@@ -225,13 +225,13 @@
    Dark Theme
    ======================== */
 :host([data-theme='dark']) {
-  background: var(--surface-50);
-  border-bottom: 3px solid var(--border-heavy);
-  box-shadow: var(--shadow-lg);
+  background: var(--bg-card);
+  border-bottom: 3px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
 :host([data-theme='dark']) .search-bar {
-  background: var(--surface-200);
+  background: var(--neutral-700);
 }
 
 :host([data-theme='dark']) .search-bar:hover {
@@ -239,16 +239,16 @@
 }
 
 :host([data-theme='dark']) .action-btn {
-  background: var(--surface-200);
+  background: var(--neutral-700);
 }
 
 :host([data-theme='dark']) .action-btn:hover {
   background: var(--primary-700);
-  color: var(--surface-50);
+  color: var(--neutral-50);
 }
 
 :host([data-theme='dark']) .user-profile:hover {
-  background: var(--surface-300);
+  background: var(--neutral-600);
 }
 
 :host([data-theme='dark']) .user-avatar {
