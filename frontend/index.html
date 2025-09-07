@@ -19,84 +19,235 @@
       <!-- Header Component -->
       <app-header></app-header>
 
-      <div class="main-content">
-        <!-- Main Content Area -->
-        <div class="content-area">
-          <h1 class="page-title">Dashboard Overview</h1>
+      <!-- Main Content -->
+      <div class="content-area">
+        <!-- Hero Section -->
+        <section class="hero-section">
+          <h1 class="hero-title">Welcome to EduSync LMS</h1>
+          <p class="hero-subtitle">
+            Your personalized learning platform designed to help you achieve academic excellence.
+            Track your progress, engage with courses, and connect with instructors.
+          </p>
+          <button class="cta-button">Explore Courses</button>
+        </section>
 
-          <div class="card-grid">
-            <div class="card">
-              <h3 class="card-title">Active Courses</h3>
-              <p class="card-content">You are currently enrolled in 5 courses this semester.</p>
-            </div>
+        <!-- Stats Overview -->
+        <h2 class="section-title">Learning Overview</h2>
+        <div class="card-grid">
+          <div class="card" style="animation-delay: 0.1s">
+            <h3 class="card-title"><i class="fas fa-book-open"></i> Active Courses</h3>
+            <p class="stat-value">5</p>
+            <p class="card-content">You're currently enrolled in 5 courses this semester</p>
+          </div>
 
-            <div class="card">
-              <h3 class="card-title">Upcoming Assignments</h3>
-              <p class="card-content">You have 3 assignments due in the next 7 days.</p>
-            </div>
+          <div class="card" style="animation-delay: 0.2s">
+            <h3 class="card-title"><i class="fas fa-tasks"></i> Assignments Due</h3>
+            <p class="stat-value">3</p>
+            <p class="card-content">You have 3 assignments due in the next 7 days</p>
+          </div>
 
-            <div class="card">
-              <h3 class="card-title">Recent Grades</h3>
-              <p class="card-content">Your average grade across all courses is 87%.</p>
-            </div>
-            
-            <div class="card">
-              <h3 class="card-title">Recent Grades</h3>
-              <p class="card-content">Your average grade across all courses is 87%.</p>
+          <div class="card" style="animation-delay: 0.3s">
+            <h3 class="card-title"><i class="fas fa-chart-line"></i> Average Grade</h3>
+            <p class="stat-value">87%</p>
+            <p class="card-content">Your current average across all courses</p>
+            <div class="progress-section">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 87%"></div>
+              </div>
             </div>
           </div>
 
-          <div class="card">
-            <h3 class="card-title">Welcome to EduSync LMS</h3>
-            <p class="card-content">
-              This is a demonstration of the component-based architecture for the EduSync Learning
-              Management System. The header, sidebar, and footer are all implemented as reusable web
-              components.
-            </p>
-          </div>
-
-          <h1 class="page-title">Dashboard Overview</h1>
-
-          <div class="card-grid">
-            <div class="card">
-              <h3 class="card-title">Active Courses</h3>
-              <p class="card-content">You are currently enrolled in 5 courses this semester.</p>
+          <div class="card" style="animation-delay: 0.4s">
+            <h3 class="card-title"><i class="fas fa-clock"></i> Learning Hours</h3>
+            <p class="stat-value">24.5</p>
+            <p class="card-content">You've spent 24.5 hours learning this week</p>
+            <div class="progress-section">
+              <div class="progress-bar">
+                <div class="progress-fill" style="width: 70%"></div>
+              </div>
             </div>
-
-            <div class="card">
-              <h3 class="card-title">Upcoming Assignments</h3>
-              <p class="card-content">You have 3 assignments due in the next 7 days.</p>
-            </div>
-
-            <div class="card">
-              <h3 class="card-title">Recent Grades</h3>
-              <p class="card-content">Your average grade across all courses is 87%.</p>
-            </div>
-            
-            <div class="card">
-              <h3 class="card-title">Recent Grades</h3>
-              <p class="card-content">Your average grade across all courses is 87%.</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3 class="card-title">Welcome to EduSync LMS</h3>
-            <p class="card-content">
-              This is a demonstration of the component-based architecture for the EduSync Learning
-              Management System. The header, sidebar, and footer are all implemented as reusable web
-              components.
-            </p>
           </div>
         </div>
 
-        <!-- Footer Component -->
-        <app-footer></app-footer>
+        <!-- My Courses -->
+        <h2 class="section-title">My Courses</h2>
+        <div class="courses-grid">
+
+          <!-- Course 1 -->
+          <div class="course-card" style="animation-delay: 0.1s">
+            <div class="course-image">
+              <i class="fas fa-calculator"></i>
+            </div>
+            <div class="course-content">
+              <h3 class="course-title">
+                Advanced Mathematics <span class="badge badge-primary">Ongoing</span>
+              </h3>
+              <p class="course-instructor">Prof.</p>
+              <p class="card-content">Explore advanced concepts in calculus and linear algebra.</p>
+              <div class="course-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <div class="course-stats">
+                  <span>75% Complete</span>
+                  <span>12/16 Modules</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Course 2 -->
+          <div class="course-card" style="animation-delay: 0.2s">
+            <div class="course-image">
+              <i class="fas fa-flask"></i>
+            </div>
+            <div class="course-content">
+              <h3 class="course-title">
+                Analysis of Algorithms <span class="badge badge-secondary">New</span>
+              </h3>
+              <p class="course-instructor">Prof.</p>
+              <p class="card-content">
+                Study of data structure and algorithms.
+              </p>
+              <div class="course-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 60%"></div>
+                </div>
+                <div class="course-stats">
+                  <span>60% Complete</span>
+                  <span>9/15 Modules</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Course 3 -->
+          <div class="course-card" style="animation-delay: 0.3s">
+            <div class="course-image">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="course-content">
+              <h3 class="course-title">
+                Fullstack Java <span class="badge badge-success">Completed</span>
+              </h3>
+              <p class="course-instructor">Prof.</p>
+              <p class="card-content">Learn modern web development techniques and frameworks.</p>
+              <div class="course-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: 100%"></div>
+                </div>
+                <div class="course-stats">
+                  <span>100% Complete</span>
+                  <span>15/15 Modules</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upcoming Events -->
+        <h2 class="section-title">Upcoming Events</h2>
+        <div class="upcoming-events" style="animation-delay: 0.2s">
+          <ul class="event-list">
+            <li class="event-item">
+              <div class="event-date">
+                <span class="event-day">15</span>
+                <span class="event-month">Oct</span>
+              </div>
+              <div class="event-details">
+                <h3 class="event-title">Mathematics Quiz</h3>
+                <p class="event-time">
+                  <i class="far fa-clock"></i> 10:00 AM - 11:30 AM | Room 302
+                </p>
+              </div>
+            </li>
+            <li class="event-item">
+              <div class="event-date">
+                <span class="event-day">18</span>
+                <span class="event-month">Oct</span>
+              </div>
+              <div class="event-details">
+                <h3 class="event-title">Chemistry Lab Submission</h3>
+                <p class="event-time"><i class="far fa-clock"></i> 11:59 PM | Online</p>
+              </div>
+            </li>
+            <li class="event-item">
+              <div class="event-date">
+                <span class="event-day">22</span>
+                <span class="event-month">Oct</span>
+              </div>
+              <div class="event-details">
+                <h3 class="event-title">Web Development Project Review</h3>
+                <p class="event-time">
+                  <i class="far fa-clock"></i> 2:00 PM - 4:00 PM | Computer Lab B
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Recent Announcements -->
+        <h2 class="section-title">Recent Announcements</h2>
+        <div class="card" style="animation-delay: 0.3s">
+          <h3 class="card-title"><i class="fas fa-bullhorn"></i> Midterm Schedule Posted</h3>
+          <p class="card-content">
+            The midterm examination schedule has been posted. Please check your course pages for
+            specific dates and times. Make sure to prepare accordingly and reach out to your
+            instructors if you have any questions.
+          </p>
+          <p class="card-content" style="color: var(--primary-500); margin-top: 0.5rem">
+            <i class="far fa-clock"></i> Posted 2 days ago by Academic Office
+          </p>
+        </div>
+
+        <div class="card" style="margin-top: 1.5rem; animation-delay: 0.4s">
+          <h3 class="card-title"><i class="fas fa-bullhorn"></i> Campus Wi-Fi Maintenance</h3>
+          <p class="card-content">
+            There will be scheduled maintenance on the campus Wi-Fi network this weekend from 10:00
+            PM Saturday to 4:00 AM Sunday. During this time, access to online resources may be
+            intermittent.
+          </p>
+          <p class="card-content" style="color: var(--primary-500); margin-top: 0.5rem">
+            <i class="far fa-clock"></i> Posted 5 days ago by IT Department
+          </p>
+        </div>
       </div>
+
+      <app-footer></app-footer>
     </div>
 
+    <!-- JavaScript -->
     <script src="script.js"></script>
     <script type="module" src="/frontend/components/header/header.js"></script>
     <script type="module" src="/frontend/components/sidebar/sidebar.js"></script>
     <script type="module" src="/frontend/components/footer/footer.js"></script>
+
+    <script>
+      // Animation On Scroll
+      document.addEventListener('DOMContentLoaded', function () {
+        const animatedElements = document.querySelectorAll(
+          '.card, .course-card, .upcoming-events, .hero-section'
+        );
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const delay = entry.target.style.animationDelay || '0s';
+                entry.target.style.animation = `fadeInUp 0.8s ${delay} forwards`;
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+          }
+        );
+
+        animatedElements.forEach((element) => {
+          observer.observe(element);
+        });
+      });
+    </script>
   </body>
 </html>
