@@ -1,4 +1,4 @@
-/* === BASE STYLES === */
+/* Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -13,12 +13,29 @@ body {
   transition: all 0.3s ease;
 }
 
-/* === LAYOUT === */
-.app-container {
-  display: flex;
-  min-height: 100vh;
-}
-
+/* Main Content */
 .main-content {
   margin-left: 15rem;
+}
+
+/* Responsive Design */
+@media screen and (min-width: 1025px) {
+  html {
+    /* Zoom Out */
+    zoom: 0.83;
+
+    /* Firefox Fallback */
+    /* -moz-transform: scale(0.83);
+    -moz-transform-origin: top left; */
+
+    overflow-x: hidden;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+
 }
