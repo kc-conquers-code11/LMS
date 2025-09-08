@@ -1,4 +1,4 @@
-const template = document.createElement('template')
+const template = document.createElement('template');
 template.innerHTML = `
   <div class="sidebar-content">
     <!-- Top bar for mobile (logo, menu toggle) -->
@@ -39,54 +39,65 @@ template.innerHTML = `
       <div class="nav-item"><div class="nav-icon"><i class="fas fa-cog"></i></div><a href="/frontend/html/settings.html">Settings</a></div>
     </nav>
   </div>
-`
+`;
 
 class AppSidebar extends HTMLElement {
   constructor() {
-    super()
-    const shadow = this.attachShadow({ mode: 'open' })
-    shadow.appendChild(template.content.cloneNode(true))
+    super();
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.appendChild(template.content.cloneNode(true));
 
     // Font Awesome
-    const faLink = document.createElement('link')
-    faLink.setAttribute('rel', 'stylesheet')
+    const faLink = document.createElement('link');
+    faLink.setAttribute('rel', 'stylesheet');
     faLink.setAttribute(
       'href',
       'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
-    )
-    shadow.appendChild(faLink)
+    );
+    shadow.appendChild(faLink);
 
     // Load CSS
     if ('adoptedStyleSheets' in shadow) {
       fetch('/frontend/components/sidebar/sidebar.css')
         .then((res) => res.text())
         .then((css) => {
-          const sheet = new CSSStyleSheet()
-          sheet.replaceSync(css)
-          shadow.adoptedStyleSheets = [sheet]
-        })
+          const sheet = new CSSStyleSheet();
+          sheet.replaceSync(css);
+          shadow.adoptedStyleSheets = [sheet];
+        });
     } else {
-      const link = document.createElement('link')
-      link.rel = 'stylesheet'
-      link.href = '/frontend/components/sidebar/sidebar.css'
-      shadow.appendChild(link)
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '/frontend/components/sidebar/sidebar.css';
+      shadow.appendChild(link);
     }
 
     // Mobile menu toggle
-    const mobileMenuToggle = shadow.getElementById('mobile-menu-toggle')
+    const mobileMenuToggle = shadow.getElementById('mobile-menu-toggle');
     mobileMenuToggle.addEventListener('click', () => {
-      this.classList.toggle('mobile-open')
-      mobileMenuToggle.classList.toggle('active')
-    })
+      this.classList.toggle('mobile-open');
+      mobileMenuToggle.classList.toggle('active');
+    });
 
     // Close mobile menu on nav item click
     shadow.querySelectorAll('.nav-item a').forEach((link) => {
       link.addEventListener('click', () => {
-        this.classList.remove('mobile-open')
-        mobileMenuToggle.classList.remove('active')
-      })
-    })
+        this.classList.remove('mobile-open');
+        mobileMenuToggle.classList.remove('active');
+      });
+    });
+
+    // Highlight active link
+    const currentPath = window.location.pathname;
+    shadow.querySelectorAll('.nav-item').forEach((item) => {
+      const anchor = item.querySelector('a');
+      if (anchor && currentPath.includes(anchor.getAttribute('href'))) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
   }
 }
 
-customElements.define('app-sidebar', AppSidebar)
+customElements.define('app-sidebar', AppSidebar);
