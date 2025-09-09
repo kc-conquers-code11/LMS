@@ -11,6 +11,10 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <style>
+      /* Additional styles for the enhanced courses page */
+      
+    </style>
   </head>
   
   <body>
@@ -25,289 +29,194 @@
       <div class="main-content">
         <!-- Page Header -->
         <div class="page-header">
-          <h1 class="page-title">My Courses</h1>
+          <h1 class="page-title">Courses</h1>
           <div class="page-actions">
-            <button class="btn-primary">
+            <button class="btn-primary" id="new-course-btn">
               <i class="fas fa-plus"></i> New Course
             </button>
           </div>
         </div>
         
-        <!-- Filter and Search Section -->
-        <div class="courses-controls">
-          <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search courses...">
+        <!-- Tabs for All Courses vs My Courses vs Bookmarked -->
+        <div class="tabs-container">
+          <div class="tab active" data-tab="all-courses">All Courses</div>
+          <div class="tab" data-tab="my-courses">My Courses</div>
+          <div class="tab" data-tab="bookmarked-courses">Bookmarked</div>
+        </div>
+        
+        <!-- Filter Toggle for Mobile -->
+        <button class="filter-toggle btn-secondary">
+          <i class="fas fa-filter"></i> Show Filters
+        </button>
+        
+        <!-- Filter Panel -->
+        <div class="filter-panel" id="filter-panel">
+          <div class="filter-group">
+            <label class="filter-label">Year</label>
+            <select class="filter-select" id="year-filter">
+              <option value="all">All Years</option>
+              <option value="1">First Year</option>
+              <option value="2">Second Year</option>
+              <option value="3">Third Year</option>
+              <option value="4">Fourth Year</option>
+            </select>
           </div>
           
-          <div class="filter-options">
-            <div class="filter-dropdown">
-              <button class="filter-btn">
-                <i class="fas fa-filter"></i> Category
-              </button>
-            </div>
-            
-            <div class="filter-dropdown">
-              <button class="filter-btn">
-                <i class="fas fa-sort"></i> Sort By
-              </button>
-            </div>
-            
-            <div class="filter-dropdown">
-              <button class="filter-btn">
-                <i class="fas fa-sliders-h"></i> Filters
-              </button>
-            </div>
+          <div class="filter-group">
+            <label class="filter-label">Branch</label>
+            <select class="filter-select" id="branch-filter">
+              <option value="all">All Branches</option>
+              <option value="COMP">Computer Engineering</option>
+              <option value="IT">Information Technology</option>
+              <option value="AIML">Artificial Intelligence & ML</option>
+              <option value="ECS">Electronics & Computer Science</option>
+              <option value="MECH">Mechatronics</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">Division</label>
+            <select class="filter-select" id="division-filter">
+              <option value="all">All Divisions</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">Semester</label>
+            <select class="filter-select" id="semester-filter">
+              <option value="all">All Semesters</option>
+              <!-- Options will be populated dynamically based on year selection -->
+            </select>
+          </div>
+          
+          <div class="filter-actions">
+            <button class="btn-secondary" id="reset-filters">Reset Filters</button>
+            <button class="btn-primary" id="apply-filters">Apply Filters</button>
           </div>
         </div>
         
-        <!-- Categories Section -->
-        <div class="categories-section">
-          <h2 class="section-title">Browse Categories</h2>
-          <div class="categories-grid">
-            <div class="category-card">
-              <div class="category-icon">
-                <i class="fas fa-code"></i>
-              </div>
-              <h3 class="category-title">Programming</h3>
-              <p class="category-count">12 courses</p>
-            </div>
-            
-            <div class="category-card">
-              <div class="category-icon">
-                <i class="fas fa-chart-bar"></i>
-              </div>
-              <h3 class="category-title">Data Science</h3>
-              <p class="category-count">8 courses</p>
-            </div>
-            
-            <div class="category-card">
-              <div class="category-icon">
-                <i class="fas fa-paint-brush"></i>
-              </div>
-              <h3 class="category-title">Design</h3>
-              <p class="category-count">10 courses</p>
-            </div>
-            
-            <div class="category-card">
-              <div class="category-icon">
-                <i class="fas fa-bullhorn"></i>
-              </div>
-              <h3 class="category-title">Marketing</h3>
-              <p class="category-count">7 courses</p>
-            </div>
+        <!-- Search Box -->
+        <div class="courses-controls">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="course-search" placeholder="Search courses...">
           </div>
         </div>
         
         <!-- Courses Grid -->
-        <h2 class="section-title">All Courses</h2>
-        <div class="courses-grid">
-          <!-- Course Card 1 -->
-          <div class="course-card">
-            <div class="course-image">
-              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Web Development">
-              <span class="course-category">Programming</span>
-            </div>
-            <div class="course-content">
-              <h3 class="course-title">Advanced Web Development</h3>
-              <p class="course-instructor">By: Sarah Johnson</p>
-              <p class="course-description">Master modern web development with React, Node.js, and MongoDB. Build full-stack applications from scratch.</p>
-              
-              <div class="course-meta">
-                <div><i class="far fa-clock"></i> 24h 10m</div>
-                <div><i class="far fa-file-alt"></i> 12 modules</div>
-              </div>
-              
-              <div class="course-progress">
-                <div class="progress-bar">
-                  <div class="progress-fill" style="width: 75%"></div>
-                </div>
-                <div class="progress-text">
-                  <span>Progress</span>
-                  <span>75%</span>
-                </div>
-              </div>
-              
-              <div class="course-actions">
-                <button class="btn-primary">Continue</button>
-                <button class="btn-secondary"><i class="far fa-bookmark"></i></button>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Course Card 2 -->
-          <div class="course-card">
-            <div class="course-image">
-              <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Data Science">
-              <span class="course-category">Data Science</span>
-            </div>
-            <div class="course-content">
-              <h3 class="course-title">Machine Learning Fundamentals</h3>
-              <p class="course-instructor">By: Michael Chen</p>
-              <p class="course-description">Learn the core concepts of machine learning algorithms and how to implement them using Python.</p>
-              
-              <div class="course-meta">
-                <div><i class="far fa-clock"></i> 18h 30m</div>
-                <div><i class="far fa-file-alt"></i> 10 modules</div>
-              </div>
-              
-              <div class="course-progress">
-                <div class="progress-bar">
-                  <div class="progress-fill" style="width: 40%"></div>
-                </div>
-                <div class="progress-text">
-                  <span>Progress</span>
-                  <span>40%</span>
-                </div>
-              </div>
-              
-              <div class="course-actions">
-                <button class="btn-primary">Continue</button>
-                <button class="btn-secondary"><i class="far fa-bookmark"></i></button>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Course Card 3 -->
-          <div class="course-card">
-            <div class="course-image">
-              <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1164&q=80" alt="UI/UX Design">
-              <span class="course-category">Design</span>
-            </div>
-            <div class="course-content">
-              <h3 class="course-title">UI/UX Design Masterclass</h3>
-              <p class="course-instructor">By: Emily Rodriguez</p>
-              <p class="course-description">Learn to create beautiful and functional user interfaces with modern design principles and tools.</p>
-              
-              <div class="course-meta">
-                <div><i class="far fa-clock"></i> 22h 15m</div>
-                <div><i class="far fa-file-alt"></i> 14 modules</div>
-              </div>
-              
-              <div class="course-progress">
-                <div class="progress-bar">
-                  <div class="progress-fill" style="width: 20%"></div>
-                </div>
-                <div class="progress-text">
-                  <span>Progress</span>
-                  <span>20%</span>
-                </div>
-              </div>
-              
-              <div class="course-actions">
-                <button class="btn-primary">Continue</button>
-                <button class="btn-secondary"><i class="far fa-bookmark"></i></button>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Course Card 4 -->
-          <div class="course-card">
-            <div class="course-image">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80" alt="Digital Marketing">
-              <span class="course-category">Marketing</span>
-            </div>
-            <div class="course-content">
-              <h3 class="course-title">Digital Marketing Strategies</h3>
-              <p class="course-instructor">By: James Wilson</p>
-              <p class="course-description">Master digital marketing techniques including SEO, social media, email marketing, and analytics.</p>
-              
-              <div class="course-meta">
-                <div><i class="far fa-clock"></i> 16h 45m</div>
-                <div><i class="far fa-file-alt"></i> 9 modules</div>
-              </div>
-              
-              <div class="course-progress">
-                <div class="progress-bar">
-                  <div class="progress-fill" style="width: 90%"></div>
-                </div>
-                <div class="progress-text">
-                  <span>Progress</span>
-                  <span>90%</span>
-                </div>
-              </div>
-              
-              <div class="course-actions">
-                <button class="btn-primary">Continue</button>
-                <button class="btn-secondary"><i class="far fa-bookmark"></i></button>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Course Card 5 -->
-          <div class="course-card">
-            <div class="course-image">
-              <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Project Management">
-              <span class="course-category">Business</span>
-            </div>
-            <div class="course-content">
-              <h3 class="course-title">Agile Project Management</h3>
-              <p class="course-instructor">By: Robert Martinez</p>
-              <p class="course-description">Learn agile methodologies and how to manage software development projects effectively.</p>
-              
-              <div class="course-meta">
-                <div><i class="far fa-clock"></i> 14h 20m</div>
-                <div><i class="far fa-file-alt"></i> 8 modules</div>
-              </div>
-              
-              <div class="course-progress">
-                <div class="progress-bar">
-                  <div class="progress-fill" style="width: 100%"></div>
-                </div>
-                <div class="progress-text">
-                  <span>Progress</span>
-                  <span>Completed</span>
-                </div>
-              </div>
-              
-              <div class="course-actions">
-                <button class="btn-primary">View Certificate</button>
-                <button class="btn-secondary"><i class="far fa-bookmark"></i></button>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Course Card 6 -->
-          <div class="course-card">
-            <div class="course-image">
-              <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mobile Development">
-              <span class="course-category">Programming</span>
-            </div>
-            <div class="course-content">
-              <h3 class="course-title">iOS App Development with Swift</h3>
-              <p class="course-instructor">By: Jennifer Lee</p>
-              <p class="course-description">Build native iOS applications using Swift and Apple's latest development tools and frameworks.</p>
-              
-              <div class="course-meta">
-                <div><i class="far fa-clock"></i> 28h 40m</div>
-                <div><i class="far fa-file-alt"></i> 15 modules</div>
-              </div>
-              
-              <div class="course-actions">
-                <button class="btn-primary">Enroll Now</button>
-                <button class="btn-secondary"><i class="far fa-bookmark"></i></button>
-              </div>
-            </div>
-          </div>
+        <div class="courses-grid" id="courses-container">
+          <!-- Courses will be dynamically loaded here -->
         </div>
         
         <!-- Pagination -->
         <div class="pagination">
-          <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
-          <button class="pagination-btn active">1</button>
-          <button class="pagination-btn">2</button>
-          <button class="pagination-btn">3</button>
-          <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+          <button class="pagination-btn" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+          <div id="page-numbers"></div>
+          <button class="pagination-btn" id="next-page"><i class="fas fa-chevron-right"></i></button>
         </div>
       </div>
 
-      </div>
-
-
+      <!-- Footer Component -->
+      <app-footer></app-footer>
     </div>
 
-    <!-- Footer Component -->
-    <app-footer></app-footer>
+    <!-- Create Course Modal -->
+    <div class="modal" id="create-course-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Create New Course</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        
+        <form id="course-form">
+          <div class="form-group">
+            <label class="form-label">Course Title</label>
+            <input type="text" class="form-input" id="course-title" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" id="course-description" required></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Instructor Name</label>
+            <input type="text" class="form-input" id="course-instructor" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <input type="text" class="form-input" id="course-category" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Year</label>
+            <select class="form-select" id="course-year" required>
+              <option value="1">First Year</option>
+              <option value="2">Second Year</option>
+              <option value="3">Third Year</option>
+              <option value="4">Fourth Year</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Branch</label>
+            <select class="form-select" id="course-branch" required>
+              <option value="COMP">Computer Engineering</option>
+              <option value="IT">Information Technology</option>
+              <option value="AIML">Artificial Intelligence & ML</option>
+              <option value="ECS">Electronics & Computer Science</option>
+              <option value="MECH">Mechatronics</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Division</label>
+            <select class="form-select" id="course-division" required>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Semester</label>
+            <select class="form-select" id="course-semester" required>
+              <!-- Options will be populated dynamically based on year selection -->
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Duration (e.g., 30h 15m)</label>
+            <input type="text" class="form-input" id="course-duration" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Number of Modules</label>
+            <input type="number" class="form-input" id="course-modules" min="1" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Course Image URL</label>
+            <input type="url" class="form-input" id="course-image" required>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn-secondary" id="cancel-course">Cancel</button>
+            <button type="submit" class="btn-primary">Create Course</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <!-- JavaScript -->
     <script src="script.js"></script>
@@ -315,6 +224,6 @@
     <script type="module" src="../components/header/header.js"></script>
     <script type="module" src="../components/sidebar/sidebar.js"></script>
     <script type="module" src="../components/footer/footer.js"></script>
-
+    
   </body>
 </html>

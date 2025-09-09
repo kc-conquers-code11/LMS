@@ -18,6 +18,45 @@ body {
   margin-left: 15rem;
 }
 
+/* ScrollBar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-400);
+}
+
+/* Dark Mode Adjustments */
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: var(--neutral-600);
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-500);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-300) transparent;
+}
+
+[data-theme='dark'] * {
+  scrollbar-color: var(--neutral-600) transparent;
+}
+
 /* Responsive Design */
 @media screen and (min-width: 1025px) {
   html {
@@ -30,12 +69,10 @@ body {
 
     overflow-x: hidden;
   }
-
 }
 
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0;
   }
-
 }

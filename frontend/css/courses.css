@@ -1,10 +1,10 @@
-/* Main Content Area */
+/* ====== MAIN CONTENT ====== */
 .main-content {
-  padding: 8rem 2rem 2rem 2rem;
+  padding: 8rem 2rem 2rem;
   transition: all 0.3s ease;
 }
 
-/* Page Header */
+/* ====== PAGE HEADER ====== */
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -26,13 +26,12 @@
   gap: 1rem;
 }
 
-/* Filter and Search Section */
+/* ====== COURSES CONTROLS ====== */
 .courses-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-  flex-wrap: wrap;
   gap: 1rem;
 }
 
@@ -59,32 +58,75 @@
   color: var(--text-light);
 }
 
-.filter-options {
+/* ====== TABS ====== */
+.tabs-container {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
 }
 
-.filter-dropdown {
-  position: relative;
+.tab {
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
 }
 
-.filter-btn {
-  padding: 0.75rem 1rem;
+.tab.active {
+  border-bottom-color: var(--primary-500);
+  color: var(--primary-500);
+  font-weight: 600;
+}
+
+/* ====== FILTER PANEL ====== */
+.filter-panel {
   background: var(--bg-card);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 15px var(--shadow);
+}
+
+.filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.filter-group:last-child {
+  margin-bottom: 0;
+}
+
+.filter-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.filter-select {
+  width: 100%;
+  padding: 0.75rem;
   border: 1px solid var(--border);
   border-radius: 8px;
+  background: var(--bg);
   color: var(--text);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
 }
 
-/* Courses Grid */
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.filter-toggle {
+  display: none;
+  margin-bottom: 1rem;
+}
+
+/* ====== COURSES GRID ====== */
 .courses-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-bottom: 2rem;
 }
@@ -206,6 +248,7 @@
   gap: 0.75rem;
 }
 
+/* ====== BUTTONS ====== */
 .btn-primary,
 .btn-secondary {
   padding: 0.6rem 1.25rem;
@@ -239,58 +282,22 @@
   background: var(--bg-hover);
 }
 
-/* Categories Section */
-.categories-section {
-  margin-bottom: 3rem;
-}
-
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.5rem;
-}
-
-.category-card {
-  background: var(--bg-card);
-  border-radius: 12px;
-  padding: 1.5rem;
-  text-align: center;
-  transition: all 0.3s ease;
+.unenroll-btn {
+  background: var(--error);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   cursor: pointer;
-  border: 1px solid var(--border);
-}
-
-.category-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px var(--shadow);
-  border-color: var(--primary-300);
-}
-
-.category-icon {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 1rem;
-  background: linear-gradient(135deg, var(--primary-100), var(--secondary-100));
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  color: var(--primary-500);
-}
-
-.category-title {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: var(--text);
-}
-
-.category-count {
-  color: var(--text-light);
   font-size: 0.9rem;
+  margin-top: 1rem;
 }
 
-/* Pagination */
+.unenroll-btn:hover {
+  opacity: 0.9;
+}
+
+/* ====== PAGINATION ====== */
 .pagination {
   display: flex;
   justify-content: center;
@@ -319,13 +326,107 @@
   border-color: transparent;
 }
 
-/* Empty State */
+#page-numbers {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+/* ====== MODAL ====== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-light);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+}
+
+.form-textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* ====== EMPTY STATE ====== */
 .empty-state {
   text-align: center;
   padding: 3rem;
   background: var(--bg-card);
   border-radius: 12px;
   margin: 2rem 0;
+  grid-column: 1 / -1;
 }
 
 .empty-state i {
@@ -344,45 +445,7 @@
   margin-bottom: 1.5rem;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .main-content {
-    margin-left: 0;
-    padding: 1rem;
-  }
-
-  .courses-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  }
-}
-
-
-@media (max-width: 768px) {
-  .main-content {
-    margin-top: 6rem;
-  }
-  
-  .page-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .courses-controls {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .search-box {
-    min-width: 100%;
-  }
-
-  .categories-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-}
-
-/* Animation for cards */
+/* ====== ANIMATIONS ====== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -415,4 +478,48 @@
 }
 .course-card:nth-child(6) {
   animation-delay: 0.6s;
+}
+
+/* ====== RESPONSIVE DESIGN ====== */
+@media (max-width: 1024px) {
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 6rem 1rem 1rem;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .courses-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-box {
+    min-width: 100%;
+  }
+
+  .courses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-toggle {
+    display: block;
+  }
+
+  .filter-panel {
+    display: none;
+  }
+
+  .filter-panel.active {
+    display: block;
+  }
 }
