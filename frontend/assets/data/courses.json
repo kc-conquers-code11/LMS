@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Advanced Web Development",
-      "instructor": "Sarah Johnson",
+      "instructor": "Pranav Khalate",
       "description": "Master modern web development with React, Node.js, and MongoDB. Build full-stack applications from scratch.",
       "category": "Programming",
       "year": 3,
@@ -20,7 +20,7 @@
     {
       "id": 2,
       "title": "Machine Learning Fundamentals",
-      "instructor": "Michael Chen",
+      "instructor": "Pranav Khalate",
       "description": "Learn the core concepts of machine learning algorithms and how to implement them using Python.",
       "category": "Data Science",
       "year": 4,
@@ -37,7 +37,7 @@
     {
       "id": 3,
       "title": "UI/UX Design Masterclass",
-      "instructor": "Emily Rodriguez",
+      "instructor": "Pranav Khalate",
       "description": "Learn to create beautiful and functional user interfaces with modern design principles and tools.",
       "category": "Design",
       "year": 2,
@@ -54,7 +54,7 @@
     {
       "id": 4,
       "title": "Digital Marketing Strategies",
-      "instructor": "James Wilson",
+      "instructor": "Pranav Khalate",
       "description": "Master digital marketing techniques including SEO, social media, email marketing, and analytics.",
       "category": "Marketing",
       "year": 3,
@@ -71,7 +71,7 @@
     {
       "id": 5,
       "title": "Agile Project Management",
-      "instructor": "Robert Martinez",
+      "instructor": "Pranav Khalate",
       "description": "Learn agile methodologies and how to manage software development projects effectively.",
       "category": "Business",
       "year": 4,
@@ -88,7 +88,7 @@
     {
       "id": 6,
       "title": "iOS App Development with Swift",
-      "instructor": "Jennifer Lee",
+      "instructor": "Pranav Khalate",
       "description": "Build native iOS applications using Swift and Apple's latest development tools and frameworks.",
       "category": "Programming",
       "year": 3,
