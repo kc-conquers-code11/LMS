@@ -419,6 +419,64 @@
   margin-top: 1.5rem;
 }
 
+/* Upload Image */
+.image-upload-container {
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.image-upload-container:hover {
+  border-color: var(--primary-500);
+  background-color: var(--primary-50);
+}
+
+.image-upload-container.dragover {
+  border-color: var(--primary-500);
+  background-color: var(--primary-100);
+}
+
+.image-preview {
+  max-width: 100%;
+  max-height: 200px;
+  margin-top: 1rem;
+  border-radius: 8px;
+  display: none;
+}
+
+.upload-icon {
+  font-size: 2rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+/* Delete Button Styles */
+.delete-course-btn {
+  background: var(--error);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.delete-course-btn:hover {
+  opacity: 0.9;
+}
+
+.teacher-actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
 /* ====== EMPTY STATE ====== */
 .empty-state {
   text-align: center;

@@ -1,167 +1,13 @@
-// courses.js - Enhanced with 3 courses per row and modal
+// courses.js
 document.addEventListener('DOMContentLoaded', function () {
   // Initialize the courses page
   initCoursesPage();
 });
 
-// Sample course data with college structure
-const coursesData = [
-  {
-    id: 1,
-    title: 'Advanced Web Development',
-    instructor: 'Sarah Johnson',
-    description:
-      'Master modern web development with React, Node.js, and MongoDB. Build full-stack applications from scratch.',
-    category: 'Programming',
-    year: 3,
-    branch: 'COMP',
-    division: 'A',
-    semester: 5,
-    duration: '24h 10m',
-    modules: 12,
-    progress: 75,
-    enrolled: true,
-    image:
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-    bookmarked: false,
-  },
-  {
-    id: 2,
-    title: 'Machine Learning Fundamentals',
-    instructor: 'Michael Chen',
-    description:
-      'Learn the core concepts of machine learning algorithms and how to implement them using Python.',
-    category: 'Data Science',
-    year: 4,
-    branch: 'AIML',
-    division: 'B',
-    semester: 7,
-    duration: '18h 30m',
-    modules: 10,
-    progress: 40,
-    enrolled: true,
-    image:
-      'https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-    bookmarked: false,
-  },
-  {
-    id: 3,
-    title: 'UI/UX Design Masterclass',
-    instructor: 'Emily Rodriguez',
-    description:
-      'Learn to create beautiful and functional user interfaces with modern design principles and tools.',
-    category: 'Design',
-    year: 2,
-    branch: 'IT',
-    division: 'C',
-    semester: 4,
-    duration: '22h 15m',
-    modules: 14,
-    progress: 20,
-    enrolled: true,
-    image:
-      'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1164&q=80',
-    bookmarked: false,
-  },
-  {
-    id: 4,
-    title: 'Digital Marketing Strategies',
-    instructor: 'James Wilson',
-    description:
-      'Master digital marketing techniques including SEO, social media, email marketing, and analytics.',
-    category: 'Marketing',
-    year: 3,
-    branch: 'COMP',
-    division: 'D',
-    semester: 6,
-    duration: '16h 45m',
-    modules: 9,
-    progress: 90,
-    enrolled: true,
-    image:
-      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1115&q=80',
-    bookmarked: false,
-  },
-  {
-    id: 5,
-    title: 'Agile Project Management',
-    instructor: 'Robert Martinez',
-    description:
-      'Learn agile methodologies and how to manage software development projects effectively.',
-    category: 'Business',
-    year: 4,
-    branch: 'COMP',
-    division: 'A',
-    semester: 8,
-    duration: '14h 20m',
-    modules: 8,
-    progress: 100,
-    enrolled: true,
-    image:
-      'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-    bookmarked: false,
-  },
-  {
-    id: 6,
-    title: 'iOS App Development with Swift',
-    instructor: 'Jennifer Lee',
-    description:
-      "Build native iOS applications using Swift and Apple's latest development tools and frameworks.",
-    category: 'Programming',
-    year: 3,
-    branch: 'COMP',
-    division: 'B',
-    semester: 5,
-    duration: '28h 40m',
-    modules: 15,
-    progress: 0,
-    enrolled: false,
-    image:
-      'https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-    bookmarked: false,
-  },
-  {
-    id: 7,
-    title: 'Data Structures and Algorithms',
-    instructor: 'Alex Thompson',
-    description: 'Learn fundamental data structures and algorithms for efficient problem solving.',
-    category: 'Programming',
-    year: 2,
-    branch: 'COMP',
-    division: 'A',
-    semester: 3,
-    duration: '30h 15m',
-    modules: 12,
-    progress: 0,
-    enrolled: false,
-    image:
-      'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-    bookmarked: false,
-  },
-  {
-    id: 8,
-    title: 'Database Management Systems',
-    instructor: 'David Kim',
-    description: 'Comprehensive course on database design, implementation, and management.',
-    category: 'Database',
-    year: 3,
-    branch: 'IT',
-    division: 'C',
-    semester: 5,
-    duration: '22h 30m',
-    modules: 10,
-    progress: 0,
-    enrolled: false,
-    image:
-      'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80',
-    bookmarked: false,
-  },
-];
-
 // Current state
 let currentState = {
-  courses: [...coursesData],
-  filteredCourses: [...coursesData],
+  courses: [],
+  filteredCourses: [],
   currentTab: 'all-courses',
   currentPage: 1,
   itemsPerPage: 6,
@@ -183,11 +29,44 @@ const semesterOptions = {
 };
 
 // Initialize the courses page
-function initCoursesPage() {
+async function initCoursesPage() {
+  await loadCoursesData();
   setupSemesterOptions();
   renderCourses();
   setupEventListeners();
   updatePagination();
+}
+
+// Load courses data from JSON file or localStorage
+async function loadCoursesData() {
+  try {
+    // Try to load from localStorage first
+    const savedCourses = localStorage.getItem('lmsCourses');
+    
+    if (savedCourses) {
+      currentState.courses = JSON.parse(savedCourses);
+    } else {
+      // Load from JSON file if no data in localStorage
+      const response = await fetch('/frontend/assets/data/courses.json');
+      const data = await response.json();
+      currentState.courses = data.courses;
+      
+      // Save to localStorage for future use
+      localStorage.setItem('lmsCourses', JSON.stringify(currentState.courses));
+    }
+    
+    currentState.filteredCourses = [...currentState.courses];
+  } catch (error) {
+    console.error('Error loading courses data:', error);
+    // Fallback to empty array
+    currentState.courses = [];
+    currentState.filteredCourses = [];
+  }
+}
+
+// Save courses to localStorage
+function saveCoursesToStorage() {
+  localStorage.setItem('lmsCourses', JSON.stringify(currentState.courses));
 }
 
 // Set up semester options based on year selection
@@ -280,6 +159,9 @@ function setupEventListeners() {
   // Course form submission
   document.getElementById('course-form').addEventListener('submit', handleCourseCreation);
 
+  // Image upload handling
+  setupImageUpload();
+
   // Pagination buttons
   document.getElementById('prev-page').addEventListener('click', () => {
     if (currentState.currentPage > 1) {
@@ -338,21 +220,104 @@ function setupEventListeners() {
       const courseId = parseInt(courseCard.dataset.courseId);
       unenrollFromCourse(courseId);
     }
+
+    // Delete course buttons (for teachers)
+    if (e.target.classList.contains('delete-course-btn')) {
+      const courseCard = e.target.closest('.course-card');
+      const courseId = parseInt(courseCard.dataset.courseId);
+      deleteCourse(courseId);
+    }
   });
+}
+
+// Set up image upload functionality
+function setupImageUpload() {
+  const imageUpload = document.getElementById('image-upload');
+  const imagePreview = document.getElementById('image-preview');
+  const uploadContainer = document.querySelector('.image-upload-container');
+
+  // Handle file selection
+  imageUpload.addEventListener('change', function (e) {
+    const file = e.target.files[0];
+    if (file) {
+      previewImage(file);
+    }
+  });
+
+  // Drag and drop functionality
+  uploadContainer.addEventListener('dragover', function (e) {
+    e.preventDefault();
+    uploadContainer.classList.add('dragover');
+  });
+
+  uploadContainer.addEventListener('dragleave', function () {
+    uploadContainer.classList.remove('dragover');
+  });
+
+  uploadContainer.addEventListener('drop', function (e) {
+    e.preventDefault();
+    uploadContainer.classList.remove('dragover');
+    
+    const file = e.dataTransfer.files[0];
+    if (file && file.type.startsWith('image/')) {
+      imageUpload.files = e.dataTransfer.files;
+      previewImage(file);
+    }
+  });
+
+  // Click to upload
+  uploadContainer.addEventListener('click', function () {
+    imageUpload.click();
+  });
+
+  function previewImage(file) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      imagePreview.src = e.target.result;
+      imagePreview.style.display = 'block';
+      document.querySelector('.upload-icon').style.display = 'none';
+      document.querySelector('.upload-text').style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
 }
 
 // Close modal
 function closeModal() {
   document.getElementById('create-course-modal').classList.remove('active');
   document.getElementById('course-form').reset();
+  
+  // Reset image preview
+  const imagePreview = document.getElementById('image-preview');
+  imagePreview.src = '';
+  imagePreview.style.display = 'none';
+  document.querySelector('.upload-icon').style.display = 'block';
+  document.querySelector('.upload-text').style.display = 'block';
 }
 
 // Handle course creation
 function handleCourseCreation(e) {
   e.preventDefault();
 
+  const imageFile = document.getElementById('image-upload').files[0];
+  let imageUrl = document.getElementById('course-image').value;
+
+  // Use uploaded image if available
+  if (imageFile) {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      imageUrl = e.target.result;
+      createCourseWithImage(imageUrl);
+    };
+    reader.readAsDataURL(imageFile);
+  } else {
+    createCourseWithImage(imageUrl);
+  }
+}
+
+function createCourseWithImage(imageUrl) {
   const newCourse = {
-    id: currentState.courses.length + 1,
+    id: Date.now(), // Use timestamp for unique ID
     title: document.getElementById('course-title').value,
     instructor: document.getElementById('course-instructor').value,
     description: document.getElementById('course-description').value,
@@ -363,13 +328,15 @@ function handleCourseCreation(e) {
     semester: parseInt(document.getElementById('course-semester').value),
     duration: document.getElementById('course-duration').value,
     modules: parseInt(document.getElementById('course-modules').value),
-    image: document.getElementById('course-image').value,
+    image: imageUrl,
     progress: 0,
     enrolled: true, // Teacher is automatically enrolled in their own course
     bookmarked: false,
+    createdBy: 'current-user' // In a real app, this would be the user ID
   };
 
   currentState.courses.unshift(newCourse);
+  saveCoursesToStorage();
   filterCourses();
   closeModal();
 
@@ -462,13 +429,13 @@ function renderCourses() {
   if (coursesToRender.length === 0) {
     // Show empty state
     coursesContainer.innerHTML = `
-            <div class="empty-state">
-              <i class="fas fa-book-open"></i>
-              <h3>No courses found</h3>
-              <p>Try adjusting your search or filters</p>
-              <button class="btn-primary" id="reset-filters-btn">Reset Filters</button>
-            </div>
-          `;
+      <div class="empty-state">
+        <i class="fas fa-book-open"></i>
+        <h3>No courses found</h3>
+        <p>Try adjusting your search or filters</p>
+        <button class="btn-primary" id="reset-filters-btn">Reset Filters</button>
+      </div>
+    `;
 
     // Add event listener to reset filters button
     document.getElementById('reset-filters-btn').addEventListener('click', resetFilters);
@@ -490,22 +457,22 @@ function createCourseCard(course) {
 
   let actionButtonText = 'Enroll Now';
   if (course.enrolled) {
-    actionButtonText = 'Continue'; // Removed "View Certificate" option
+    actionButtonText = 'Continue';
   }
 
   let progressHtml = '';
   if (course.enrolled) {
     progressHtml = `
-            <div class="course-progress">
-              <div class="progress-bar">
-                <div class="progress-fill" style="width: ${course.progress}%"></div>
-              </div>
-              <div class="progress-text">
-                <span>Progress</span>
-                <span>${course.progress}%</span>
-              </div>
-            </div>
-          `;
+      <div class="course-progress">
+        <div class="progress-bar">
+          <div class="progress-fill" style="width: ${course.progress}%"></div>
+        </div>
+        <div class="progress-text">
+          <span>Progress</span>
+          <span>${course.progress}%</span>
+        </div>
+      </div>
+    `;
   }
 
   // Add unenroll button for enrolled courses in "My Courses" tab
@@ -514,39 +481,52 @@ function createCourseCard(course) {
     unenrollButton = `<button class="unenroll-btn">Unenroll</button>`;
   }
 
+  // Add delete button for courses created by the current user
+  let deleteButton = '';
+  if (course.createdBy === 'current-user') {
+    deleteButton = `
+      <div class="teacher-actions">
+        <button class="delete-course-btn">
+          <i class="fas fa-trash"></i> Delete Course
+        </button>
+      </div>
+    `;
+  }
+
   card.innerHTML = `
-          <div class="course-image">
-            <img src="${course.image}" alt="${course.title}">
-            <span class="course-category">${course.category}</span>
-          </div>
-          <div class="course-content">
-            <h3 class="course-title">${course.title}</h3>
-            <p class="course-instructor">By: ${course.instructor}</p>
-            <div class="course-meta">
-              <span>Year ${course.year}</span>
-              <span>• ${course.branch}</span>
-              <span>• Div ${course.division}</span>
-              <span>• Sem ${course.semester}</span>
-            </div>
-            <p class="course-description">${course.description}</p>
-            
-            <div class="course-meta">
-              <div><i class="far fa-clock"></i> ${course.duration}</div>
-              <div><i class="far fa-file-alt"></i> ${course.modules} modules</div>
-            </div>
-            
-            ${progressHtml}
-            
-            <div class="course-actions">
-              <button class="btn-primary">${actionButtonText}</button>
-              <button class="btn-secondary"><i class="${
-                course.bookmarked ? 'fas' : 'far'
-              } fa-bookmark"></i></button>
-            </div>
-            
-            ${unenrollButton}
-          </div>
-        `;
+    <div class="course-image">
+      <img src="${course.image}" alt="${course.title}" onerror="this.src='https://via.placeholder.com/300x180?text=Course+Image'">
+      <span class="course-category">${course.category}</span>
+    </div>
+    <div class="course-content">
+      <h3 class="course-title">${course.title}</h3>
+      <p class="course-instructor">By: ${course.instructor}</p>
+      <div class="course-meta">
+        <span>Year ${course.year}</span>
+        <span>• ${course.branch}</span>
+        <span>• Div ${course.division}</span>
+        <span>• Sem ${course.semester}</span>
+      </div>
+      <p class="course-description">${course.description}</p>
+      
+      <div class="course-meta">
+        <div><i class="far fa-clock"></i> ${course.duration}</div>
+        <div><i class="far fa-file-alt"></i> ${course.modules} modules</div>
+      </div>
+      
+      ${progressHtml}
+      
+      <div class="course-actions">
+        <button class="btn-primary">${actionButtonText}</button>
+        <button class="btn-secondary"><i class="${
+          course.bookmarked ? 'fas' : 'far'
+        } fa-bookmark"></i></button>
+      </div>
+      
+      ${unenrollButton}
+      ${deleteButton}
+    </div>
+  `;
 
   return card;
 }
@@ -570,6 +550,9 @@ function enrollInCourse(courseId) {
     currentState.courses[courseIndex].enrolled = true;
     currentState.courses[courseIndex].progress = 0;
 
+    // Save to localStorage
+    saveCoursesToStorage();
+
     // Update UI - switch to "My Courses" tab
     document.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
     document.querySelector('[data-tab="my-courses"]').classList.add('active');
@@ -592,11 +575,35 @@ function unenrollFromCourse(courseId) {
       currentState.courses[courseIndex].enrolled = false;
       currentState.courses[courseIndex].progress = 0;
 
+      // Save to localStorage
+      saveCoursesToStorage();
+
       // Update UI
       filterCourses();
 
       // Show confirmation message
       showNotification(`Unenrolled from "${currentState.courses[courseIndex].title}"`);
+    }
+  }
+}
+
+// Delete a course
+function deleteCourse(courseId) {
+  if (confirm('Are you sure you want to delete this course? This action cannot be undone.')) {
+    const courseIndex = currentState.courses.findIndex((c) => c.id === courseId);
+
+    if (courseIndex !== -1) {
+      const courseTitle = currentState.courses[courseIndex].title;
+      currentState.courses.splice(courseIndex, 1);
+
+      // Save to localStorage
+      saveCoursesToStorage();
+
+      // Update UI
+      filterCourses();
+
+      // Show confirmation message
+      showNotification(`Course "${courseTitle}" has been deleted`);
     }
   }
 }
@@ -614,6 +621,9 @@ function continueCourse(courseId) {
       currentState.courses[courseIndex].progress = 100;
     }
 
+    // Save to localStorage
+    saveCoursesToStorage();
+
     // Update UI
     filterCourses();
   }
@@ -625,6 +635,9 @@ function toggleBookmark(courseId, button) {
 
   if (courseIndex !== -1) {
     currentState.courses[courseIndex].bookmarked = !currentState.courses[courseIndex].bookmarked;
+
+    // Save to localStorage
+    saveCoursesToStorage();
 
     // Update button icon
     const icon = button.querySelector('i');
@@ -691,6 +704,3 @@ function showNotification(message) {
     document.body.removeChild(toast);
   }, 3000);
 }
-
-// Initialize the page
-initCoursesPage();

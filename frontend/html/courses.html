@@ -11,10 +11,7 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <style>
-      /* Additional styles for the enhanced courses page */
-      
-    </style>
+    
   </head>
   
   <body>
@@ -206,8 +203,15 @@
           </div>
           
           <div class="form-group">
-            <label class="form-label">Course Image URL</label>
-            <input type="url" class="form-input" id="course-image" required>
+            <label class="form-label">Course Image</label>
+            <div class="image-upload-container" id="image-upload-container">
+              <i class="fas fa-cloud-upload-alt upload-icon"></i>
+              <p class="upload-text">Drag & drop an image here or click to browse</p>
+              <input type="file" id="image-upload" accept="image/*" style="display: none;">
+              <img id="image-preview" class="image-preview" alt="Image preview">
+            </div>
+            <p class="form-hint">Or enter an image URL:</p>
+            <input type="url" class="form-input" id="course-image" placeholder="https://example.com/image.jpg">
           </div>
           
           <div class="form-actions">
