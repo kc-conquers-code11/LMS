@@ -1,0 +1,79 @@
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 15rem;
+  padding: 8rem 2rem 2rem;
+}
+
+/* ScrollBar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neutral-300);
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-400);
+}
+
+/* Dark Mode Adjustments */
+[data-theme='dark'] ::-webkit-scrollbar-thumb {
+  background: var(--neutral-600);
+}
+
+[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-500);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--neutral-300) transparent;
+}
+
+[data-theme='dark'] * {
+  scrollbar-color: var(--neutral-600) transparent;
+}
+
+/* Responsive Design */
+@media screen and (min-width: 1025px) {
+  html {
+    /* Zoom Out */
+    zoom: 0.83;
+
+    /* Firefox Fallback */
+    /* -moz-transform: scale(0.83);
+    -moz-transform-origin: top left; */
+
+    overflow-x: hidden;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+}

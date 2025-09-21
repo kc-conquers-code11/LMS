@@ -1,0 +1,78 @@
+:root {
+  /* ====== Primary (Pink) ====== */
+  --primary-50:  #fff5f9;
+  --primary-100: #ffe5f0;
+  --primary-200: #ffcce1;
+  --primary-300: #ff99c2;
+  --primary-400: #ff66a3;
+  --primary-500: #ff408d;  /* Main Primary */
+  --primary-600: #e0317a;
+  --primary-700: #b82663;
+  --primary-800: #8f1d4c;
+  --primary-900: #661435;
+
+  /* ====== Secondary (Lavender) ====== */
+  --secondary-50:  #f8f7fc;
+  --secondary-100: #f1eefb;
+  --secondary-200: #e3dcf8;
+  --secondary-300: #cec1f2;
+  --secondary-400: #b49ae8;
+  --secondary-500: #9c7add;
+  --secondary-600: #7f5ac6;
+  --secondary-700: #6545a3;
+  --secondary-800: #4b327a;
+  --secondary-900: #332257;
+
+  /* ====== Accent / Info (Blue) ====== */
+  --info-50:  #f0f7ff;
+  --info-100: #e0efff;
+  --info-200: #badcff;
+  --info-300: #7cbaff;
+  --info-400: #3d99ff;
+  --info-500: #1877f2; /* Info Blue */
+  --info-600: #0f5fcc;
+  --info-700: #0a47a3;
+  --info-800: #073377;
+  --info-900: #05224f;
+
+  /* ====== Neutral (Grays for background & text) ====== */
+  --neutral-50:  #fafafa;
+  --neutral-100: #f4f4f5;
+  --neutral-200: #e4e4e7;
+  --neutral-300: #d4d4d8;
+  --neutral-400: #a1a1aa;
+  --neutral-500: #71717a; /* Paragraph text */
+  --neutral-600: #52525b;
+  --neutral-700: #3f3f46; /* Headings */
+  --neutral-800: #27272a;
+  --neutral-900: #18181b;
+
+  /* ====== Status Colors ====== */
+  --success: #4ade80;  /* green-400 */
+  --warning: #facc15;  /* yellow-400 */
+  --error:   #f87171;  /* red-400 */
+
+  /* ====== Base (Light Mode Defaults) ====== */
+  --bg: var(--neutral-50);
+  --bg-card: #ffffff;
+  --bg-hover: var(--neutral-100);
+  --text: var(--neutral-800);
+  --text-light: var(--neutral-500);
+  --border: var(--neutral-200);
+  --shadow: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] {
+  --bg: var(--neutral-900);
+  --bg-card: var(--neutral-800);
+  --bg-hover: var(--neutral-700);
+  --text: var(--neutral-100);
+  --text-light: var(--neutral-400);
+  --border: var(--neutral-700);
+  --shadow: rgba(0, 0, 0, 0.35);
+
+  /* Adjusted primaries for better dark contrast */
+  --primary-500: #ff6fa6;
+  --secondary-500: #bca7f2;
+  --info-500:   #3d9eff;
+}
