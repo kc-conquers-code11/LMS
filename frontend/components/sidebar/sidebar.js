@@ -36,6 +36,7 @@ template.innerHTML = `
       <div class="nav-item"><div class="nav-icon"><i class="fas fa-chart-line"></i></div><a href="/frontend/html/analytics.html">Analytics</a></div>
       <div class="nav-item"><div class="nav-icon"><i class="fas fa-tasks"></i></div><a href="/frontend/html/assignments.html">Assignments</a></div>
       <div class="nav-item"><div class="nav-icon"><i class="fas fa-comments"></i></div><a href="/frontend/html/announcements.html">Announcements</a></div>
+      <div class="nav-item"><div class="nav-icon"><i class="fas fa-sticky-note"></i></div><a href="/frontend/html/notice.html">Notice Generator</a></div>
       <div class="nav-item"><div class="nav-icon"><i class="fas fa-cog"></i></div><a href="/frontend/html/settings.html">Settings</a></div>
     </nav>
   </div>
