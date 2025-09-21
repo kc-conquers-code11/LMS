@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9" />
+    <title>EduSync LMS - Assignments</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/frontend/css/assignments.css" />
+    <link rel="stylesheet" href="/frontend/css/variables.css" />
+    <link rel="stylesheet" href="/frontend/css/base.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Component -->
+        <app-sidebar></app-sidebar>
+
+        <!-- Header Component -->
+        <app-header></app-header>
+
+        <div class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">Assignments</h1>
+                <div class="page-actions">
+                    <button class="btn-primary" id="create-assignment-btn">
+                        <i class="fas fa-plus"></i> Create Assignment
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tabs for different views -->
+            <div class="tabs-container">
+                <div class="tab active" data-tab="all-assignments">All Assignments</div>
+                <div class="tab" data-tab="pending-assignments">Pending</div>
+                <div class="tab" data-tab="submitted-assignments">Submitted</div>
+                <div class="tab" data-tab="graded-assignments">Graded</div>
+            </div>
+
+            <!-- Filter Toggle for Mobile -->
+            <button class="filter-toggle btn-secondary">
+                <i class="fas fa-filter"></i> Show Filters
+            </button>
+
+            <!-- Filter Panel -->
+            <div class="filter-panel" id="filter-panel">
+                <div class="filter-group">
+                    <label class="filter-label">Course</label>
+                    <select class="filter-select" id="course-filter">
+                        <option value="all">All Courses</option>
+                        <option value="web-dev">Web Development</option>
+                        <option value="dsa">Data Structures & Algorithms</option>
+                        <option value="dbms">Database Management</option>
+                        <option value="os">Operating Systems</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Status</label>
+                    <select class="filter-select" id="status-filter">
+                        <option value="all">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="submitted">Submitted</option>
+                        <option value="graded">Graded</option>
+                        <option value="late">Late</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label">Due Date</label>
+                    <select class="filter-select" id="due-date-filter">
+                        <option value="all">All Dates</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                        <option value="future">Future</option>
+                        <option value="past">Past Due</option>
+                    </select>
+                </div>
+
+                <div class="filter-actions">
+                    <button class="btn-secondary" id="reset-filters">Reset Filters</button>
+                    <button class="btn-primary" id="apply-filters">Apply Filters</button>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="courses-controls">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="assignment-search" placeholder="Search assignments...">
+                </div>
+            </div>
+
+            <!-- Assignments Container -->
+            <div class="assignments-container" id="assignments-container">
+                <!-- Assignments will be dynamically loaded here -->
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button class="pagination-btn" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+                <div id="page-numbers"></div>
+                <button class="pagination-btn" id="next-page"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <!-- Footer Component -->
+        <app-footer></app-footer>
+    </div>
+
+    <!-- Create Assignment Modal -->
+    <div class="modal" id="create-assignment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create New Assignment</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+
+            <form id="assignment-form">
+                <div class="form-group">
+                    <label class="form-label">Assignment Title</label>
+                    <input type="text" class="form-input" id="assignment-title" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Course</label>
+                    <select class="form-select" id="assignment-course" required>
+                        <option value="">Select a course</option>
+                        <option value="web-dev">Web Development</option>
+                        <option value="dsa">Data Structures & Algorithms</option>
+                        <option value="dbms">Database Management</option>
+                        <option value="os">Operating Systems</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-textarea" id="assignment-description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Due Date</label>
+                    <input type="datetime-local" class="form-input" id="assignment-due-date" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Maximum Points</label>
+                    <input type="number" class="form-input" id="assignment-points" min="1" value="100" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Assignment File (Optional)</label>
+                    <div class="file-upload-container" id="file-upload-container">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <p class="upload-text">Drag & drop assignment file here or click to browse</p>
+                        <input type="file" id="file-upload" class="form-file" style="display: none;">
+                        <div class="file-preview" id="file-preview">
+                            <div class="file-info">
+                                <i class="fas fa-file-pdf file-icon"></i>
+                                <span id="file-name">No file selected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-assignment">Cancel</button>
+                    <button type="submit" class="btn-primary">Create Assignment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Submit Assignment Modal -->
+    <div class="modal" id="submit-assignment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Submit Assignment</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+
+            <form id="submission-form">
+                <input type="hidden" id="submission-assignment-id">
+
+                <div class="form-group">
+                    <label class="form-label">Assignment</label>
+                    <p id="submission-assignment-title" class="detail-value"></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Due Date</label>
+                    <p id="submission-due-date" class="detail-value"></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Submission File</label>
+                    <div class="file-upload-container" id="submission-file-upload-container">
+                        <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                        <p class="upload-text">Drag & drop your submission file here or click to browse</p>
+                        <input type="file" id="submission-file-upload" class="form-file" style="display: none;">
+                        <div class="file-preview" id="submission-file-preview">
+                            <div class="file-info">
+                                <i class="fas fa-file file-icon"></i>
+                                <span id="submission-file-name">No file selected</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Comments (Optional)</label>
+                    <textarea class="form-textarea" id="submission-comments"
+                        placeholder="Add any comments about your submission..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-submission">Cancel</button>
+                    <button type="submit" class="btn-primary">Submit Assignment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Grade Assignment Modal -->
+    <div class="modal" id="grade-assignment-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Grade Assignment</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+
+            <form id="grading-form">
+                <input type="hidden" id="grading-assignment-id">
+                <input type="hidden" id="grading-student-id">
+
+                <div class="form-group">
+                    <label class="form-label">Student</label>
+                    <p id="grading-student-name" class="detail-value"></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Assignment</label>
+                    <p id="grading-assignment-title" class="detail-value"></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Submitted File</label>
+                    <div id="grading-submission-file" class="detail-value">
+                        <a href="#" id="grading-file-link" class="btn-secondary">
+                            <i class="fas fa-download"></i> Download Submission
+                        </a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Submission Date</label>
+                    <p id="grading-submission-date" class="detail-value"></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Student Comments</label>
+                    <p id="grading-student-comments" class="detail-value" style="font-style: italic;"></p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Score (out of <span id="grading-max-points"></span>)</label>
+                    <input type="number" class="form-input" id="grading-score" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Feedback</label>
+                    <textarea class="form-textarea" id="grading-feedback"
+                        placeholder="Provide feedback to the student..." required></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-grading">Cancel</button>
+                    <button type="submit" class="btn-primary">Submit Grade</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/script.js"></script>
+    <script src="../js/assignments.js"></script>
+    <script type="module" src="../components/header/header.js"></script>
+    <script type="module" src="../components/sidebar/sidebar.js"></script>
+    <script type="module" src="../components/footer/footer.js"></script>
+
+</body>
+
+</html>
