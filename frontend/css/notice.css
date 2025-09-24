@@ -51,16 +51,16 @@
      }
 
      .college-logo {
-         width: 80px;
-         height: 80px;
+         width: 300px;
+         height: 180px;
          object-fit: contain;
-         border: 2px solid var(--border);
+         /* border: 2px solid var(--border); */
          border-radius: 8px;
          padding: 0.5rem;
      }
 
      .college-info {
-         text-align: center;
+         /* text-align: center; */
          flex: 1;
      }
 
