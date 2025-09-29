@@ -77,6 +77,7 @@
     text-decoration: none;
     transition: all 0.3s ease;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .settings-nav-link:hover {
@@ -106,6 +107,11 @@
 
 .settings-section {
     margin-bottom: 2.5rem;
+    display: none;
+}
+
+.settings-section.active {
+    display: block;
 }
 
 .settings-section:last-child {
@@ -476,6 +482,13 @@ input:checked+.toggle-slider:before {
 .action-card:hover {
     border-color: var(--primary-300);
     transform: translateY(-2px);
+}
+
+.action-card .btn-danger,
+.action-card .btn-secondary {
+  margin: 0 auto;     
+  display: flex;      
+  justify-content: center;
 }
 
 .action-icon {
