@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9" />
+    <title>EduSync LMS - Attendance</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/frontend/css/attendance.css" />
+    <link rel="stylesheet" href="/frontend/css/variables.css" />
+    <link rel="stylesheet" href="/frontend/css/base.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Component -->
+        <app-sidebar></app-sidebar>
+
+        <!-- Header Component -->
+        <app-header></app-header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <h1 class="page-title">
+                    Attendance
+                </h1>
+                <div class="page-actions">
+                    <button class="btn-secondary">
+                        <i class="fas fa-download"></i> Export Report
+                    </button>
+                </div>
+            </div>
+
+            <!-- Controls Section -->
+            <section class="controls-section">
+                <div class="filter-group">
+                    <select class="filter-select" id="semesterFilter">
+                        <option value="all">All Semesters</option>
+                        <option value="sem1">Semester 1</option>
+                        <option value="sem2">Semester 2</option>
+                        <option value="sem3">Semester 3</option>
+                        <option value="sem4">Semester 4</option>
+                    </select>
+                    <select class="filter-select" id="courseFilter">
+                        <option value="all">All Courses</option>
+                        <option value="dsa">Data Structures</option>
+                        <option value="dbms">Database Management</option>
+                        <option value="web">Web Development</option>
+                        <option value="ai">Artificial Intelligence</option>
+                    </select>
+                    <select class="filter-select" id="monthFilter">
+                        <option value="current">Current Month</option>
+                        <option value="last">Last Month</option>
+                        <option value="custom">Custom Range</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Attendance Overview -->
+            <section class="attendance-overview">
+                <div class="overview-card">
+                    <div class="overview-header">
+                        <h3 class="overview-title">
+                            <div class="overview-icon primary">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            Overall Attendance
+                        </h3>
+                    </div>
+                    <div class="attendance-stats">
+                        <div class="attendance-circle">
+                            <div class="circle-bg">
+                                <div class="circle-progress"></div>
+                                <div class="circle-content">
+                                    <div class="attendance-percent">85%</div>
+                                    <div class="attendance-label">Current</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="attendance-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Present</span>
+                                <span class="detail-value present">42</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Absent</span>
+                                <span class="detail-value absent">5</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Late</span>
+                                <span class="detail-value late">3</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Total Classes</span>
+                                <span class="detail-value">50</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-header">
+                        <h3 class="overview-title">
+                            <div class="overview-icon success">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            Best Course
+                        </h3>
+                    </div>
+                    <div class="attendance-stats">
+                        <div class="course-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="attendance-details">
+                            <div class="course-name">Database Management</div>
+                            <div class="course-instructor">Prof. Pranav Khalate</div>
+                            <div class="detail-item">
+                                <span class="detail-label">Attendance</span>
+                                <span class="detail-value present">94%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Required</span>
+                                <span class="detail-value">75%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-header">
+                        <h3 class="overview-title">
+                            <div class="overview-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            Needs Attention
+                        </h3>
+                    </div>
+                    <div class="attendance-stats">
+                        <div class="course-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <div class="attendance-details">
+                            <div class="course-name">Advanced Calculus</div>
+                            <div class="course-instructor">Prof. Pranav Khalate</div>
+                            <div class="detail-item">
+                                <span class="detail-label">Attendance</span>
+                                <span class="detail-value absent">68%</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Required</span>
+                                <span class="detail-value">75%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Attendance Calendar -->
+            <section class="attendance-calendar">
+                <div class="calendar-header">
+                    <h3 class="calendar-title">October 2025</h3>
+                    <div class="calendar-nav">
+                        <button class="calendar-nav-btn" id="prevMonth">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="calendar-current">October 2025</div>
+                        <button class="calendar-nav-btn" id="nextMonth">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-day-header">Sun</div>
+                    <div class="calendar-day-header">Mon</div>
+                    <div class="calendar-day-header">Tue</div>
+                    <div class="calendar-day-header">Wed</div>
+                    <div class="calendar-day-header">Thu</div>
+                    <div class="calendar-day-header">Fri</div>
+                    <div class="calendar-day-header">Sat</div>
+
+                    <!-- Calendar days will be populated by JavaScript -->
+                    <div id="calendarDays"></div>
+                </div>
+            </section>
+
+            <!-- Course Attendance -->
+            <section class="course-attendance">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-book-open"></i>
+                        Course-wise Attendance
+                    </h3>
+                </div>
+                <div class="course-list" id="courseList">
+                    <!-- Course items will be populated by JavaScript -->
+                </div>
+            </section>
+
+            <!-- Recent Attendance -->
+            <section class="recent-attendance">
+                <div class="section-header">
+                    <h3 class="section-title">
+                        <i class="fas fa-history"></i>
+                        Recent Attendance Records
+                    </h3>
+                </div>
+                <div class="table-container">
+                    <table class="attendance-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Course</th>
+                                <th>Status</th>
+                                <th>Time</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceRecords">
+                            <!-- Attendance records will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer Component -->
+        <app-footer></app-footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/script.js"></script>
+    <script src="../js/attendance.js"></script>
+    <script type="module" src="../components/sidebar/sidebar.js"></script>
+    <script type="module" src="../components/header/header.js"></script>
+    <script type="module" src="../components/footer/footer.js"></script>
+</body>
+
+</html>

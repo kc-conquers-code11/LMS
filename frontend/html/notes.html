@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.9" />
+    <title>EduSync LMS - Notes</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/frontend/css/notes.css" />
+    <link rel="stylesheet" href="/frontend/css/variables.css" />
+    <link rel="stylesheet" href="/frontend/css/base.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
+  </head>
+  
+  <body>
+    <div class="app-container">
+      <!-- Sidebar Component -->
+      <app-sidebar></app-sidebar>
+
+      <!-- Header Component -->
+      <app-header></app-header>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Page Header -->
+        <div class="page-header">
+          <h1 class="page-title">Notes</h1>
+          <div class="page-actions">
+            <button class="btn-primary" id="upload-notes-btn">
+              <i class="fas fa-plus"></i> Upload Notes
+            </button>
+          </div>
+        </div>
+        
+        <!-- Tabs for Browse Notes vs My Bookmarks -->
+        <div class="tabs-container">
+          <div class="tab active" data-tab="browse-notes">Browse Notes</div>
+          <div class="tab" data-tab="bookmarked-notes">Bookmarked Notes</div>
+        </div>
+        
+        <!-- Filter Toggle for Mobile -->
+        <button class="filter-toggle btn-secondary">
+          <i class="fas fa-filter"></i> Show Filters
+        </button>
+        
+        <!-- Filter Panel -->
+        <div class="filter-panel" id="filter-panel">
+          <div class="filter-group">
+            <label class="filter-label">Year</label>
+            <select class="filter-select" id="year-filter">
+              <option value="all">All Years</option>
+              <option value="1">First Year</option>
+              <option value="2">Second Year</option>
+              <option value="3">Third Year</option>
+              <option value="4">Fourth Year</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">Branch</label>
+            <select class="filter-select" id="branch-filter">
+              <option value="all">All Branches</option>
+              <option value="COMP">Computer Engineering</option>
+              <option value="IT">Information Technology</option>
+              <option value="AIML">Artificial Intelligence & ML</option>
+              <option value="ECS">Electronics & Computer Science</option>
+              <option value="MECH">Mechatronics</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">Division</label>
+            <select class="filter-select" id="division-filter">
+              <option value="all">All Divisions</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">Semester</label>
+            <select class="filter-select" id="semester-filter">
+              <option value="all">All Semesters</option>
+              <!-- Options will be populated dynamically based on year selection -->
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label class="filter-label">Subject</label>
+            <select class="filter-select" id="subject-filter">
+              <option value="all">All Subjects</option>
+              <!-- Options will be populated dynamically -->
+            </select>
+          </div>
+          
+          <div class="filter-actions">
+            <button class="btn-secondary" id="reset-filters">Reset Filters</button>
+            <button class="btn-primary" id="apply-filters">Apply Filters</button>
+          </div>
+        </div>
+        
+        <!-- Search Box -->
+        <div class="courses-controls">
+          <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="notes-search" placeholder="Search notes...">
+          </div>
+        </div>
+        
+        <!-- Notes Grid -->
+        <div class="notes-grid" id="notes-container">
+          <!-- Notes will be dynamically loaded here -->
+        </div>
+        
+        <!-- Pagination -->
+        <div class="pagination">
+          <button class="pagination-btn" id="prev-page"><i class="fas fa-chevron-left"></i></button>
+          <div id="page-numbers"></div>
+          <button class="pagination-btn" id="next-page"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+
+      <!-- Footer Component -->
+      <app-footer></app-footer>
+    </div>
+
+    <!-- Upload Notes Modal -->
+    <div class="modal" id="upload-notes-modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title">Upload Notes</h2>
+          <button class="close-modal">&times;</button>
+        </div>
+        
+        <form id="notes-form">
+          <div class="form-group">
+            <label class="form-label">Notes Title</label>
+            <input type="text" class="form-input" id="notes-title" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" class="form-input" id="notes-subject" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea class="form-textarea" id="notes-description"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Year</label>
+            <select class="form-select" id="notes-year" required>
+              <option value="1">First Year</option>
+              <option value="2">Second Year</option>
+              <option value="3">Third Year</option>
+              <option value="4">Fourth Year</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Branch</label>
+            <select class="form-select" id="notes-branch" required>
+              <option value="COMP">Computer Engineering</option>
+              <option value="IT">Information Technology</option>
+              <option value="AIML">Artificial Intelligence & ML</option>
+              <option value="ECS">Electronics & Computer Science</option>
+              <option value="MECH">Mechatronics</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Division</label>
+            <select class="form-select" id="notes-division" required>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Semester</label>
+            <select class="form-select" id="notes-semester" required>
+              <!-- Options will be populated dynamically based on year selection -->
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Module Number</label>
+            <input type="number" class="form-input" id="notes-module" min="1" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Upload Notes File</label>
+            <div class="file-upload-container" id="file-upload-container">
+              <i class="fas fa-cloud-upload-alt upload-icon"></i>
+              <p class="upload-text">Drag & drop your notes file here or click to browse</p>
+              <input type="file" id="file-upload" accept=".pdf,.doc,.docx,.txt,.ppt,.pptx" style="display: none;">
+              <div class="file-preview" id="file-preview">
+                <div class="file-info">
+                  <i class="fas fa-file-pdf file-icon"></i>
+                  <span id="file-name">No file selected</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="btn-secondary" id="cancel-notes">Cancel</button>
+            <button type="submit" class="btn-primary">Upload Notes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script type="module" src="../js/notes.js"></script>
+    <script type="module" src="../components/header/header.js"></script>
+    <script type="module" src="../components/sidebar/sidebar.js"></script>
+    <script type="module" src="../components/footer/footer.js"></script>
+    
+  </body>
+</html>

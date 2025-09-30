@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9" />
+    <title>EduSync LMS - AI Notice Generator</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/frontend/css/notice.css" />
+    <link rel="stylesheet" href="/frontend/css/variables.css" />
+    <link rel="stylesheet" href="/frontend/css/base.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Component -->
+        <app-sidebar></app-sidebar>
+
+        <!-- Header Component -->
+        <app-header></app-header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="notice-editor">
+                <!-- Notice Preview -->
+                <div class="notice-preview-container">
+                    <div class="notice-template notice-normal" id="notice-preview">
+                        <div class="notice-header">
+                            <img src="../assets/images/Logo_.webp" alt="College Logo" class="college-logo"
+                                onerror="this.src='https://via.placeholder.com/80x80?text=College+Logo'">
+                            <div class="college-info">
+                                <h1>ABC College of Engineering</h1>
+                                <p>Affiliated to XYZ University | NAAC Accredited</p>
+                            </div>
+                        </div>
+
+                        <div class="notice-body">
+                            <h2 id="notice-title">[Notice Title]</h2>
+                            <div class="notice-content" id="notice-content">
+                                <p>[Notice content will appear here...]</p>
+                            </div>
+                        </div>
+
+                        <div class="notice-footer">
+                            <p>Date: <span id="notice-date"></span></p>
+                            <div class="signature-section" id="signature-container">
+                                <!-- Signatures will be added here -->
+                            </div>
+                            <p id="notice-department"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notice Controls -->
+                <div class="notice-controls">
+                    <div class="controls-header">
+                        <h2><i class="fas fa-edit"></i> Notice Generator</h2>
+                    </div>
+
+                    <!-- Template Selection -->
+                    <div class="template-section">
+                        <div class="section-title">
+                            <i class="fas fa-palette"></i>
+                            <span>Notice Type</span>
+                        </div>
+                        <div class="template-buttons">
+                            <button class="template-btn active" data-type="normal">Normal</button>
+                            <button class="template-btn" data-type="important">Important</button>
+                            <button class="template-btn" data-type="urgent">Urgent</button>
+                            <button class="template-btn" data-type="exam">Exam Notice</button>
+                            <button class="template-btn" data-type="event">Event Notice</button>
+                        </div>
+                    </div>
+
+                    <!-- Notice Options -->
+                    <div class="notice-options">
+                        <div class="option-group">
+                            <label class="form-label">Department</label>
+                            <select class="option-select" id="notice-department-select">
+                                <option value="">All Departments</option>
+                                <option value="Computer Engineering">Computer Engineering</option>
+                                <option value="Information Technology">Information Technology</option>
+                                <option value="Artificial Intelligence & ML">Artificial Intelligence & ML</option>
+                                <option value="Electronics & Computer Science">Electronics & Computer Science</option>
+                                <option value="Mechatronics">Mechatronics</option>
+                            </select>
+                        </div>
+                        <div class="option-group">
+                            <label class="form-label">Priority</label>
+                            <select class="option-select" id="notice-priority-select">
+                                <option value="normal">Normal</option>
+                                <option value="important">Important</option>
+                                <option value="urgent">Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Signature Management -->
+                    <div class="signature-management">
+                        <div class="section-title">
+                            <i class="fas fa-signature"></i>
+                            <span>Signatures</span>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-input" id="signature-name" placeholder="Name">
+                            <input type="text" class="form-input" id="signature-title" placeholder="Title/Position">
+                            <button class="btn-secondary" onclick="addSignature()">
+                                <i class="fas fa-plus"></i> Add Signature
+                            </button>
+                        </div>
+                        <div class="signature-list" id="signature-list">
+                            <!-- Signature items will be added here -->
+                        </div>
+                    </div>
+
+                    <!-- Notice Form -->
+                    <div class="notice-form">
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-heading"></i>
+                                <span>Notice Title</span>
+                            </label>
+                            <input type="text" class="form-input" id="input-title" placeholder="Enter Notice Title">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">
+                                <i class="fas fa-align-left"></i>
+                                <span>Notice Content</span>
+                            </label>
+                            <div class="formatting-toolbar">
+                                <button class="format-btn" data-format="bold" title="Bold"><i
+                                        class="fas fa-bold"></i></button>
+                                <button class="format-btn" data-format="italic" title="Italic"><i
+                                        class="fas fa-italic"></i></button>
+                                <button class="format-btn" data-format="underline" title="Underline"><i
+                                        class="fas fa-underline"></i></button>
+                                <button class="format-btn" data-format="ul" title="Bullet List"><i
+                                        class="fas fa-list-ul"></i></button>
+                                <button class="format-btn" data-format="ol" title="Numbered List"><i
+                                        class="fas fa-list-ol"></i></button>
+                                <button class="format-btn" data-format="link" title="Add Link"><i
+                                        class="fas fa-link"></i></button>
+                            </div>
+                            <textarea class="form-textarea" id="input-content"
+                                placeholder="Enter Notice Content..."></textarea>
+                        </div>
+
+                        <!-- AI Suggestions -->
+                        <div class="ai-suggestions" id="ai-suggestions" style="display: none;">
+                            <div class="suggestion-title">
+                                <i class="fas fa-robot"></i>
+                                <span>AI Suggestions</span>
+                            </div>
+                            <div class="suggestion-text" id="suggestion-text"></div>
+                            <div class="suggestion-buttons">
+                                <button class="suggestion-btn" onclick="applySuggestion()">Apply Suggestion</button>
+                                <button class="suggestion-btn" onclick="regenerateSuggestion()">Regenerate</button>
+                                <button class="suggestion-btn" onclick="hideSuggestion()">Dismiss</button>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button class="btn-primary" onclick="generateNotice()">
+                                <i class="fas fa-magic"></i> Generate Notice
+                            </button>
+                            <button class="btn-secondary" onclick="downloadNotice()">
+                                <i class="fas fa-download"></i> Download as PDF
+                            </button>
+                            <button class="btn-secondary" onclick="printNotice()">
+                                <i class="fas fa-print"></i> Print Notice
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Component -->
+        <app-footer></app-footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/script.js"></script>
+    <script src="../js/notice.js"></script>
+    <script type="module" src="../components/header/header.js"></script>
+    <script type="module" src="../components/sidebar/sidebar.js"></script>
+    <script type="module" src="../components/footer/footer.js"></script>
+
+    <!-- jsPDF library for PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+
+</body>
+
+</html>
