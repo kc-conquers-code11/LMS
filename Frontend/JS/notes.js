@@ -1,4 +1,3 @@
-// notes.js - Fixed version with all working features
 document.addEventListener('DOMContentLoaded', function () {
   // Initialize the notes page
   initNotesPage();
@@ -50,7 +49,7 @@ async function loadNotesData() {
     } else {
       try {
         // Load from JSON file if no data in localStorage
-        const response = await fetch('/frontend/assets/data/notes.json');
+        const response = await fetch('../assets/data/notes.json');
         if (!response.ok) {
           throw new Error('Notes file not found');
         }
