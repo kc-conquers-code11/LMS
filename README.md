@@ -1,5 +1,5 @@
 # LMS
-LMS Project with Java as Backend
+LMS Project with Java/SQL as Backend
 
 
 Basic Template for the LMS is ready :
